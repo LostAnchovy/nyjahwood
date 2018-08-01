@@ -1,0 +1,19 @@
+
+<div class="container container-fluid">
+  <h1 class="text-center">Add Product</h1>
+  <form method="post" action ='/api/newproduct'>
+      <div class="form-group">
+       <label>Product Name</label>   
+      <input class="form-control" type="text" name ="name" label="product name" required>
+      </div>
+      <label>Description</label>   
+      <div class="form-group">
+      <input class="form-control" type="text" name ="description" label="description" required>
+      </div>
+      <label>Price</label>  
+      <div class="form-group">
+      <input class="form-control" type="number" name="price" label="price" required> 
+      </div>
+      <button class="btn btn-primary" type = "submit" value ="ok">Submit</button>
+  </form>
+</div>

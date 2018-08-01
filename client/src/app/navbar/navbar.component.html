@@ -1,0 +1,69 @@
+<!-- <header>
+    <nav class="navbar navbar-expand-lg navbar-dark rgba-grey-light fixed-top scrolling-navbar">
+        <div class="container-flex">
+            <button class="navbar-toggler m-auto mb-3" type="button" data-toggle="collapse" data-target="#navigationbar" aria-controls="navbarSupportedContent-7"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigationbar">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show"    >
+                            <a class="nav-link" [routerLink]="['ourstory']">Our Story</a>
+                        </li>
+                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                        <a class="nav-link" [routerLink]="['collections']">Collections</a>
+                    </li>
+                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show"    >
+                            <a class="nav-link" [routerLink]="['contact']">ContactUs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  </header> -->
+
+<header>
+      <nav class="navbar navbar-expand-sm bg-light fixed-top navbar-light mb-3">
+            <button class="navbar-toggler m-auto" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+        <ul class="navbar-nav mx-auto text-center">
+          <!-- Feature to add class="active" to link currently on? -->
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" [routerLink]="['ourstory']">Our Story</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" [routerLink]="['collections']">Our Collections</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" [routerLink]="['collections']">Blog</a>
+              </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" [routerLink]="['contact']">Contact us</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" [routerLink]="['registration']">signup</a>
+          </li>    
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" [routerLink]="['admin']" >Login</a>
+                  <a class="dropdown-item" [routerLink]="['admin/dashboard']" >Dashboard</a>
+                  <a class="dropdown-item" [routerLink]="['admin/dashboard/addproduct']">Add Product</a>
+              </div>
+          </li>
+        </ul>
+        </div>
+      </nav>
+</header>
