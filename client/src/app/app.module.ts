@@ -18,6 +18,11 @@ import { DiningComponent } from './dining/dining.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
+import { ProductlistComponent } from './productlist/productlist.component';
+import { DashboardlistComponent } from './dashboardlist/dashboardlist.component';
+import { PageslistComponent } from './pageslist/pageslist.component';
+import { BlogComponent } from './blog/blog.component';
+import { BloglistComponent } from './bloglist/bloglist.component';
 
 
 @NgModule({
@@ -37,6 +42,11 @@ import { AddproductComponent } from './addproduct/addproduct.component';
     RegistrationComponent,
     DashboardComponent,
     AddproductComponent,
+    ProductlistComponent,
+    DashboardlistComponent,
+    PageslistComponent,
+    BlogComponent,
+    BloglistComponent,
   ],
   imports: [
     BrowserModule,

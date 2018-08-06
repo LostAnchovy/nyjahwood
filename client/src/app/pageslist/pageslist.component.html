@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-4 mb-3">
+      <app-dashboardlist></app-dashboardlist>
+    </div>
+    <div class="col-md-8">
+        <div class="container-fluid">
+            <div class="card">
+              <div class="card-header bg-warning"> 
+                <h2 class="white-text">Page List</h2>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Page</th>
+                    <th>Description</th>
+                    <th>Edited</th>
+                    <th>Admin Privalges</th>
+                  </tr>
+                  <tr>
+                    <td>Home Page</td>
+                    <td>Sample Description</td>
+                    <td>Nov 12, 2018</td>
+                    <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">edit</button> 
+                         <button class="btn-danger">delete</button> </td>
+                  </tr>
+                  <tr>
+                    <td>Our Story</td>
+                    <td>Sample Description</td>
+                    <td>October 12, 2018</td>
+                    <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
+                  </tr> 
+                  <tr>
+                    <td>Our Collect</td>
+                    <td>Sample Description</td>
+                    <td>October 12, 2018</td>
+                    <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
+                  </tr> 
+                </table>
+              </div>
+            </div>
+            </div>
+    </div>
+  </div>
+
+
+<!-- Modal 1 -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-warning" >
+          <h5 class="modal-title text-white" id="exampleModalLongTitle">Edit Page</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Page Title</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="page title">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control" placeholder="filler text" name="body"></textarea>
+            </div>
+        
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
