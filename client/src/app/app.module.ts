@@ -23,6 +23,8 @@ import { DashboardlistComponent } from './dashboardlist/dashboardlist.component'
 import { PageslistComponent } from './pageslist/pageslist.component';
 import { BlogComponent } from './blog/blog.component';
 import { BloglistComponent } from './bloglist/bloglist.component';
+import { UserslistComponent } from './userslist/userslist.component';
+import { AdminheaderComponent } from './adminheader/adminheader.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { BloglistComponent } from './bloglist/bloglist.component';
     PageslistComponent,
     BlogComponent,
     BloglistComponent,
+    UserslistComponent,
+    AdminheaderComponent,
   ],
   imports: [
     BrowserModule,

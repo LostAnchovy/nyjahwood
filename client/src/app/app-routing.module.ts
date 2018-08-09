@@ -14,6 +14,7 @@ import {AddproductComponent} from './addproduct/addproduct.component'
 import {PageslistComponent} from './pageslist/pageslist.component'
 import {BlogComponent} from './blog/blog.component'
 import {BloglistComponent} from './bloglist/bloglist.component'
+import {UserslistComponent} from './userslist/userslist.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'admin/dashboard/addproduct', component: AddproductComponent },
   { path: 'admin/dashboard/pageslist', component: PageslistComponent },
   { path: 'admin/dashboard/bloglist', component: BloglistComponent },
+  { path: 'admin/dashboard/userslist', component: UserslistComponent },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
   { path: 'collections/dining', component: DiningComponent },
