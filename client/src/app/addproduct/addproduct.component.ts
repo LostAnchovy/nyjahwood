@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-addproduct',
@@ -14,11 +15,12 @@ product ={
   price:''
 }
 
-  constructor(private _dataService:DataService) { }
+  constructor(private _dataService:DataService, private _router:Router) { }
 
   ngOnInit() {
     //for get functions from the dataservice
   }
+
   newProduct(){
     this._dataService.newProduct(this.product)
     this.product ={
@@ -26,6 +28,7 @@ product ={
       description:'',
       price:''
     }
+    this._router.navigateByUrl('/admin/dashboard')
   }
 
 }

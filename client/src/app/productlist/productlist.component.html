@@ -8,14 +8,14 @@
       <tr>
         <th>Product Name</th>
         <th>Description</th>
-        <th>Created</th>
+        <th>Updated</th>
         <th>Admin Privelges</th>
       </tr>
       <tbody *ngFor ="let x of products">
       <tr>
         <td>{{x.product_name}}</td>
         <td>{{x.description}}</td>
-        <td>{{x.createdAt}}</td>
+        <td>{{x.updatedAt}}</td>
         <td><button class="btn-warning">update</button> 
             <button class="btn-danger" (click)="removeProduct(product, x._id)">delete</button> </td>
       </tr>
