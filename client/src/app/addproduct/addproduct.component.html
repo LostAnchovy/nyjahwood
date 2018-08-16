@@ -13,15 +13,15 @@
                     <form #form="ngForm" (submit)="newProduct()">
                         <div class="form-group">
                          <label>Product Name</label>   
-                        <input class="form-control" type="text" name ="name" label="product name" required>
+                        <input class="form-control" type="text" name ="name" label="product name" [(ngModel)]="product.name" #productname="ngModel"  required>
                         </div>
                         <label>Description</label>   
                         <div class="form-group">
-                        <input class="form-control" type="text" name ="description" label="description" id="editor1">
+                        <input class="form-control" type="text" name ="description" label="description" [(ngModel)]="product.description" #description="ngModel">
                         </div>
                         <label>Price</label>  
                         <div class="form-group">
-                        <input class="form-control" type="number" name="price" label="price" required> 
+                        <input class="form-control" type="number" name="price" label="price" [(ngModel)]="product.price" #price="ngModel" required> 
                         </div>
                         <button class="btn btn-primary" type = "submit" value ="ok">Submit</button>
                     </form>
