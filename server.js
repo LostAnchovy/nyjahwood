@@ -10,8 +10,6 @@ var bodyparser = require('body-parser')
 var port = process.env.PORT || 3000
 var config = require('./config/database')
 var bcrypt = require('bcrypt')
-var User = require('./models/user')
-var Product = require('./models/products')
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
@@ -68,7 +66,7 @@ passport.deserializeUser((_id, cb)=> {
 // build configuration files
 // build service.ts file
 
-app.all("**", (req, res) => {
+app.all("*", (req, res) => {
     res.sendFile(path.resolve('./client/dist/index.html'));
   });
 

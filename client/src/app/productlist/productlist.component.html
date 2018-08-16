@@ -11,25 +11,15 @@
         <th>Created</th>
         <th>Admin Privelges</th>
       </tr>
+      <tbody *ngFor ="let x of products">
       <tr>
-        <td>Sample Name</td>
-        <td>Sample Description</td>
-        <td>October 12, 2018</td>
-        <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">edit</button> 
-             <button class="btn-danger">delete</button> </td>
+        <td>{{x.product_name}}</td>
+        <td>{{x.description}}</td>
+        <td>{{x.createdAt}}</td>
+        <td><button class="btn-warning">update</button> 
+            <button class="btn-danger" (click)="removeProduct(product, x._id)">delete</button> </td>
       </tr>
-      <tr>
-        <td>Sample Name</td>
-        <td>Sample Description</td>
-        <td>October 12, 2018</td>
-        <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
-      </tr> 
-      <tr>
-        <td>Sample Name</td>
-        <td>Sample Description</td>
-        <td>October 12, 2018</td>
-        <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
-      </tr> 
+      </tbody>
     </table>
   </div>
 </div>

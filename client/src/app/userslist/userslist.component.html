@@ -18,22 +18,14 @@
                     <th>create_date</th>
                     <th>Admin Privalges</th>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Keith Nguyen</td>
-                    <td>Khoacn@yahoo.com</td>
-                    <td>Nov 12, 2018</td>
-                    <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">edit</button> 
+                  <tbody *ngFor ="let user of users">
+                    <td>{{user._id}}</td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.createdAt}}</td>
+                    <td> <button class="btn-warning">edit</button> 
                          <button class="btn-danger">delete</button> </td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>Henry Nguyen</td>
-                      <td>Khoacn@hotmail.com</td>
-                      <td>Nov 12, 2018</td>
-                      <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">edit</button> 
-                           <button class="btn-danger">delete</button> </td>
-                    </tr>
+                </tbody>
                 </table>
               </div>
             </div>
