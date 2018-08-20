@@ -27,6 +27,7 @@ import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { NewblogComponent } from './newblog/newblog.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     UserslistComponent,
     AdminheaderComponent,
     NotfoundComponent,
+    NewblogComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   users = new BehaviorSubject ([]);
   products = new BehaviorSubject([]);
+  blogs = new BehaviorSubject ([]);
 
   constructor(private _http: HttpClient) { }
 
@@ -13,6 +14,12 @@ export class DataService {
     this._http.get('/api/users/all').subscribe((response:any)=>{
       this.users.next(response)
     }) 
+  }
+
+  getAllBlogs(){
+    this._http.get('/api/blogs/all').subscribe((response:any)=>{
+      this.blogs.next(response)
+    })
   }
 
   getAllProducts(){
@@ -26,7 +33,11 @@ export class DataService {
       (response: any) => { }
     );
   } 
-  
+
+  newBlog(blog){
+    this._http.post('/api/newblog', blog).subscribe((response:any)=>{})
+  }
+
   removeProduct(product, id) {
     this._http.delete('/api/product/' + id).subscribe(
       (response: any[]) => {

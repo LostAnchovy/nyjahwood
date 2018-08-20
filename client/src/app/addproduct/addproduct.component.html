@@ -21,6 +21,11 @@
                         <textarea class="form-control" type="text" name ="description" required minlength="5" label="description" [(ngModel)]="product.description" #description="ngModel" rows="7"></textarea>
                         </div>
                         <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
+                        <label>Dimensions</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="dimensions" label="dimensions" [(ngModel)]="product.dimensions" #dimensions="ngModel" required> 
+                        <small>please add dimensions to the product</small>
+                        </div>
                         <label>Price</label>  
                         <div class="form-group">
                         <input class="form-control" type="number" name="price" label="price" [(ngModel)]="product.price" #price="ngModel" required> 

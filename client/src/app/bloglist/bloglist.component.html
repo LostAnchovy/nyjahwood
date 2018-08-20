@@ -4,7 +4,7 @@
         <app-dashboardlist></app-dashboardlist>
     </div>
     <div class="col-md-8">
-        <div class="container-fluid">
+            <div class="container-fluid">
             <div class="card">
               <div class="card-header bg-warning"> 
                 <h2 class="white-text">Blog List</h2>
@@ -12,34 +12,27 @@
               <div class="card-body">
                 <table class="table table-striped">
                   <tr>
+                    <th>Blog Author</th>
                     <th>Blog Title</th>
                     <th>Description</th>
                     <th>Edited</th>
                     <th>Admin Privalges</th>
                   </tr>
-                  <tr>
-                    <td>Home Page</td>
-                    <td>Sample Description</td>
+                  <tbody *ngFor="let blog of blogs">
+                  <tr class="bg-white">
+                    <td>{{blog.author}}</td>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.body}}</td>
                     <td>Nov 12, 2018</td>
-                    <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">edit</button> 
+                    <td> <button class="btn-warning" data-toggle="modal" data-target="#modal1">update</button> 
                          <button class="btn-danger">delete</button> </td>
                   </tr>
-                  <tr>
-                    <td>Our Story</td>
-                    <td>Sample Description</td>
-                    <td>October 12, 2018</td>
-                    <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
-                  </tr> 
-                  <tr>
-                    <td>Our Collect</td>
-                    <td>Sample Description</td>
-                    <td>October 12, 2018</td>
-                    <td> <button class="btn-warning">edit</button> <button class="btn-danger">delete</button> </td>
-                  </tr> 
+                  </tbody>
                 </table>
               </div>
             </div>
-            </div>
+            <a href="admin/dashboard/newblog"><button class="btn btn-primary">Write new blog</button></a>
+            <div>
     </div>
   </div>
 

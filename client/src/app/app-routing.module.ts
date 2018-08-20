@@ -15,6 +15,7 @@ import {PageslistComponent} from './pageslist/pageslist.component'
 import {BlogComponent} from './blog/blog.component'
 import {BloglistComponent} from './bloglist/bloglist.component'
 import {UserslistComponent} from './userslist/userslist.component'
+import {NewblogComponent} from './newblog/newblog.component'
 import {NotfoundComponent} from './notfound/notfound.component'
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'admin/dashboard/addproduct', component: AddproductComponent },
   { path: 'admin/dashboard/pageslist', component: PageslistComponent },
   { path: 'admin/dashboard/bloglist', component: BloglistComponent },
+  { path: 'admin/dashboard/newblog', component: NewblogComponent },
   { path: 'admin/dashboard/userslist', component: UserslistComponent },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },

@@ -13,7 +13,6 @@ products
 
   removeProduct(product, id){
     this._dataService.removeProduct(product, id)
-    this._router.navigateByUrl('admin/dashboard')
   }
 
   navigateHome(){

@@ -12,6 +12,9 @@ const productSchema = new Schema({
     price:{
         type: Number,
     },
+    dimensions: {
+        type: String,
+    }
 }, {timestamps: true });
 
 var Product = mongoose.model('Product', productSchema)
