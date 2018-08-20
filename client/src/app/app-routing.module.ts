@@ -15,6 +15,7 @@ import {PageslistComponent} from './pageslist/pageslist.component'
 import {BlogComponent} from './blog/blog.component'
 import {BloglistComponent} from './bloglist/bloglist.component'
 import {UserslistComponent} from './userslist/userslist.component'
+import {NotfoundComponent} from './notfound/notfound.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'collections/stools', component: StoolsComponent },
   { path: 'collections/dining', component: DiningComponent },
   { path: 'registration', component: RegistrationComponent},
-  { path: 'blog', component: BlogComponent}
+  { path: 'blog', component: BlogComponent},
+  { path: '**', component: NotfoundComponent}
 ];
 
 @NgModule({

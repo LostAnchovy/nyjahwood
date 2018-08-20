@@ -1,18 +1,7 @@
+<app-adminheader></app-adminheader>
 <div class="row">
     <div class="col-md-4 mb-3">
-        <div class="container-fluid">
-            <div class="card">
-              <div class="card-header bg-warning">
-                  <i class="fas fa-cog"></i> <span class="text-white">Dashboard</span>
-              </div>
-            <div class="list-group">
-                    <a href="admin/dashboard/pageslist" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-file-alt mr-2"></i>Pages</a>
-                    <a href="#" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-pencil-alt mr-2"></i>Blog Post</a>
-                    <a [routerLink]="['dashboard']"  class="list-group-item list-group-item-action waves-effect"><i class="fas fa-gem mr-2"></i>Products</a>
-                    <a href="#" class="list-group-item list-group-item-action disabled"><i class="fas fa-user mr-2"></i>Users</a>
-                </div>
-              </div>
-            </div>
+        <app-dashboardlist></app-dashboardlist>
     </div>
     <div class="col-md-8">
         <div class="container-fluid">

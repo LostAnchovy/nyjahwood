@@ -26,6 +26,7 @@ import { AdminheaderComponent } from './adminheader/adminheader.component';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { FormsModule } from '@angular/forms';
     BloglistComponent,
     UserslistComponent,
     AdminheaderComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <app-adminheader></app-adminheader>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 mb-3">
         <app-dashboardlist></app-dashboardlist>
     </div>
     <div class="col-md-8">
@@ -14,16 +14,18 @@
                         <div class="form-group">
                          <label>Product Name</label>   
                         <input class="form-control" type="text" name ="name" label="product name" [(ngModel)]="product.name" #productname="ngModel"  required>
+                        <small>product name must be unique</small>
                         </div>
                         <label>Description</label>   
                         <div class="form-group">
-                        <input class="form-control" type="text" name ="description" label="description" [(ngModel)]="product.description" #description="ngModel">
+                        <textarea class="form-control" type="text" name ="description" required minlength="5" label="description" [(ngModel)]="product.description" #description="ngModel" rows="7"></textarea>
                         </div>
+                        <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
                         <label>Price</label>  
                         <div class="form-group">
                         <input class="form-control" type="number" name="price" label="price" [(ngModel)]="product.price" #price="ngModel" required> 
                         </div>
-                        <button class="btn btn-primary" type = "submit" value ="ok">Submit</button>
+                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Submit</button>
                     </form>
                     </div>
                   </div>

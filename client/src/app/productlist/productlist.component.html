@@ -8,16 +8,18 @@
       <tr>
         <th>Product Name</th>
         <th>Description</th>
+        <th>Price</th>
         <th>Updated</th>
         <th>Admin Privelges</th>
       </tr>
-      <tbody *ngFor ="let x of products">
-      <tr>
-        <td>{{x.product_name}}</td>
-        <td>{{x.description}}</td>
-        <td>{{x.updatedAt}}</td>
-        <td><button class="btn-warning">update</button> 
-            <button class="btn-danger" (click)="removeProduct(product, x._id)">delete</button> </td>
+      <tbody *ngFor ="let product of products">
+      <tr class="bg-white">
+        <td>{{product.product_name}}</td>
+        <td>{{product.description}}</td>
+        <td>${{product.price}}</td>
+        <td>{{product.updatedAt}}</td>
+        <td>
+          <button class="btn-danger" (click)="removeProduct(product, product._id)">delete</button> </td>
       </tr>
       </tbody>
     </table>

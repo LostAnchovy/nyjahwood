@@ -26,8 +26,9 @@ export class DataService {
       (response: any) => { }
     );
   } 
-  removeProduct(proudct, id) {
-    this._http.delete('/api/product' + id).subscribe(
+  
+  removeProduct(product, id) {
+    this._http.delete('/api/product/' + id).subscribe(
       (response: any[]) => {
         this.getAllProducts();
        }
