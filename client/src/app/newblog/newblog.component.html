@@ -7,7 +7,7 @@
             <div class="container container-fluid">
                 <div class="card">
                     <div class="card-header bg-warning text-center">
-                        <span class="text-white">Write a new blog</span>
+                        <span class="text-white h2">Write a new blog</span>
                     </div>
                     <div class="card-body">
                     <form #form="ngForm" (submit)="newBlog()">
@@ -15,7 +15,7 @@
                          <label>Blog Title </label>   
                         <input class="form-control" type="text" name ="name" label="Blog Title" [(ngModel)]="blog.title" #blogtitle="ngModel"  required>
                         </div>
-                        <label>Blog author</label>  
+                        <label>Blog Author</label>  
                         <div class="form-group">
                         <input class="form-control" type="text" name="author" label="author" [(ngModel)]="blog.author" #author="ngModel" required> 
                         </div>
@@ -24,7 +24,7 @@
                         <textarea class="form-control" type="text" name ="body" required minlength="5" label="body" [(ngModel)]="blog.body" #description="ngModel" rows="7"></textarea>
                         </div>
                         <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
-                        <label>Blog image</label>  
+                        <label>Blog Image</label>  
                         <div class="form-group">
                         <input class="form-control" type="text" name="image" label="image" [(ngModel)]="blog.image" #blogimage="ngModel" required>
                         <small>please provide link to image file("http:\\www.hostace.com\nyjahwood\123.jpg")</small>

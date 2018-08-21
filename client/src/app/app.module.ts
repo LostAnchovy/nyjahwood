@@ -25,10 +25,9 @@ import { UserslistComponent } from './userslist/userslist.component';
 import { AdminheaderComponent } from './adminheader/adminheader.component';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NewblogComponent } from './newblog/newblog.component';
-
 
 @NgModule({
   declarations: [
@@ -61,6 +60,7 @@ import { NewblogComponent } from './newblog/newblog.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [DataService],

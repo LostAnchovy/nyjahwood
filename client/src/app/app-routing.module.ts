@@ -17,13 +17,14 @@ import {BloglistComponent} from './bloglist/bloglist.component'
 import {UserslistComponent} from './userslist/userslist.component'
 import {NewblogComponent} from './newblog/newblog.component'
 import {NotfoundComponent} from './notfound/notfound.component'
+import {LoginComponent} from './login/login.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'ourstory', component: OurstoryComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: LoginComponent },
   { path: 'admin/dashboard', component: DashboardComponent },
   { path: 'admin/dashboard/addproduct', component: AddproductComponent },
   { path: 'admin/dashboard/pageslist', component: PageslistComponent },
