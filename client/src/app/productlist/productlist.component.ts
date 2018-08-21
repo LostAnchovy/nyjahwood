@@ -15,10 +15,6 @@ products
     this._dataService.removeProduct(product, id)
   }
 
-  navigateHome(){
-    this._router.navigateByUrl('/')
-  }
-
   ngOnInit() {
     this._dataService.getAllProducts();
 

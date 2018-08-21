@@ -9,10 +9,10 @@ import { Router} from "@angular/router"
 })
 export class NewblogComponent implements OnInit {
 newblog ={
-  title: String,
-  body: String,
-  author: String,
-  image: String,
+  title: '',
+  body: '',
+  author: '',
+  image: '',
 }
   constructor(private dataService: DataService, private router: Router) { }
 
@@ -22,10 +22,10 @@ newblog ={
   newBlog() {
     this.dataService.newBlog(this.newBlog)
     this.newblog ={
-      title: String,
-      body: String,
-      author: String,
-      image: String,
+      title: '',
+      body: '',
+      author: '',
+      image: '',
     }
     this.router.navigateByUrl('/admin/dashboard/bloglist')
   }

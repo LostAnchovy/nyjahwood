@@ -22,10 +22,10 @@ exports.findAll =(req,res)=>{
 }
 
 exports.delete = (req, res)=>{
-    Blog.remove({_id: req.params.id}).then(()=>{
-        res.redirect('/blog')
+    Blog.remove({_id: req.params.blogId}).then(()=>{
+        res.status(204).end()
     }).catch((err)=>{
-        res.send('error could not remove blog entry from DB')
+        res.send('error could not remove product from DB')
     })
 }
 

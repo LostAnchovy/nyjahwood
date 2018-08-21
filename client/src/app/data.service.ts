@@ -34,8 +34,20 @@ export class DataService {
     );
   } 
 
-  newBlog(blog){
-    this._http.post('/api/newblog', blog).subscribe((response:any)=>{})
+  newBlog(blog) {
+    this._http.post('/api/newblog', blog).subscribe(
+      (response: any) => { }
+    );
+  }
+
+
+
+  removeBlog(blog, id) {
+    this._http.delete('/api/blog/' + id).subscribe(
+      (response: any[]) => {
+        this.getAllBlogs();
+       }
+    );
   }
 
   removeProduct(product, id) {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service'
+import { Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-bloglist',
@@ -7,13 +9,18 @@ import {DataService} from '../data.service'
   styleUrls: ['./bloglist.component.css']
 })
 export class BloglistComponent implements OnInit {
-  blogs;
-  constructor(private dataService: DataService) { }
+  blogs
+  constructor(private _dataService: DataService, private _router: Router) { }
+
+  removeBlog(blog, id){
+    this._dataService.removeBlog(blog, id)
+  }
+
 
   ngOnInit() {
-    this.dataService.getAllBlogs()
+    this._dataService.getAllBlogs()
 
-    this.dataService.blogs.subscribe(
+    this._dataService.blogs.subscribe(
       (blogs)=> {this.blogs = blogs;}
     );
     //binds the blogs objects to the 
