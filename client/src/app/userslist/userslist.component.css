@@ -1,3 +1,7 @@
-#x{
-    color:red;
+th, td{
+    font-family: 'Goudy Bookletter 1911', serif;
+}
+
+h1,h2,h3, h4{
+    font-family: 'Raleway', sans-serif;
 }
