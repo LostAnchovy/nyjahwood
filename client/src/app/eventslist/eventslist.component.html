@@ -7,34 +7,35 @@
             <div class="container-fluid">
             <div class="card">
               <div class="card-header bg-warning"> 
-                <h2 class="white-text">Blog List</h2>
+                <h2 class="white-text">Events List </h2>
               </div>
               <div class="card-body">
                 <table class="table table-striped">
                   <tr>
-                    <th>Blog Author</th>
-                    <th>Blog Title</th>
+                    <th>Event Title</th>
                     <th>Description</th>
-                    <th>Edited</th>
-                    <th>Admin Privalges</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Admin Privelges </th>
                   </tr>
-                  <tbody *ngFor="let blog of blogs">
+                  <tbody >
                   <tr class="bg-white">
-                    <td>{{blog.author}}</td>
-                    <td>{{blog.title}}</td>
-                    <td>{{blog.body}}</td>
-                    <td>Nov 12, 2018</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
                     <td> 
                       <button class="btn-warning">Update</button>
-                      <button class="btn-danger" (click)="removeBlog(blog, blog._id)">Delete</button> 
+                      <button class="btn-danger">Delete</button> 
                     </td>
                   </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <a href="admin/dashboard/newblog"><button class="btn btn-primary">Write new blog</button></a>
+            <a href="admin/dashboard/newevent"><button class="btn btn-primary">Create a new Event</button></a>
             <div>
     </div>
   </div>
-

@@ -10,6 +10,7 @@ var bodyparser = require('body-parser')
 var port = process.env.PORT || 3000
 var config = require('./config/database')
 var bcrypt = require('bcrypt')
+var User = require('./models/user')
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
@@ -25,14 +26,21 @@ mongoose.connect(config.db,{
 })
 
 app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }))
+  secret:"keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge:6000}
+}))
 
-app.use(session());
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+//   }))
+
 app.use(passport.initialize());
+app.use(session());
 app.use(passport.session());
 app.use(flash());
 

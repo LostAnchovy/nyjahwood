@@ -28,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NewblogComponent } from './newblog/newblog.component';
+import { EventslistComponent } from './eventslist/eventslist.component';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { NewblogComponent } from './newblog/newblog.component';
     AdminheaderComponent,
     NotfoundComponent,
     NewblogComponent,
+    EventslistComponent,
+    EventsComponent,
   ],
   imports: [
     BrowserModule,

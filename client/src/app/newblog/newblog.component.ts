@@ -8,7 +8,7 @@ import { Router} from "@angular/router"
   styleUrls: ['./newblog.component.css']
 })
 export class NewblogComponent implements OnInit {
-newblog ={
+blog ={
   title: '',
   body: '',
   author: '',
@@ -20,8 +20,8 @@ newblog ={
 
   }
   newBlog() {
-    this.dataService.newBlog(this.newBlog)
-    this.newblog ={
+    this.dataService.newBlog(this.blog)
+    this.blog = {
       title: '',
       body: '',
       author: '',
@@ -29,15 +29,5 @@ newblog ={
     }
     this.router.navigateByUrl('/admin/dashboard/bloglist')
   }
-
-  // newProduct(){
-  //   this._dataService.newProduct(this.product)
-  //   this.product ={
-  //     name:'',
-  //     description:'',
-  //     price:''
-  //   }
-  //   this._router.navigateByUrl('/admin/dashboard')
-  // }
-
+  
 }

@@ -4,7 +4,8 @@ exports.create =(req,res)=>{
     Blog.create({
         title:req.body.title,
         body:req.body.body,
-        author: req.body.author
+        author: req.body.author,
+        image: req.body.image
     }).then((newAuthor)=>{
         res.json(newAuthor)
     }).catch(err=>{

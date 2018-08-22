@@ -36,7 +36,6 @@
       
         <div class="collapse navbar-collapse" id="basicExampleNav">
         <ul class="navbar-nav mx-auto text-center">
-          <!-- Feature to add class="active" to link currently on? -->
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
             <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
@@ -48,21 +47,29 @@
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" [routerLink]="['blog']">Blog</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" [routerLink]="['events']">Upcoming Events</a>
               </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
             <a class="nav-link" [routerLink]="['contact']">Contact us</a>
           </li>
-          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" [routerLink]="['registration']">signup</a>
-          </li>    
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" [routerLink]="['admin']" >Login</a>
-                  <a class="dropdown-item" [routerLink]="['admin/dashboard']" >Dashboard</a>
-                  <a class="dropdown-item" [routerLink]="['admin/dashboard/addproduct']">Add Product</a>
-              </div>
-          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right text-center">
+            <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show">
+                 <a class="nav-link" [routerLink]="['registration']">Register</a>
+            </li>    
+                <!-- <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['admin']" >Login</a>
+                    <a class="dropdown-item" [routerLink]="['admin/dashboard']" >Dashboard</a>
+                    <a class="dropdown-item" [routerLink]="['admin/dashboard/addproduct']">Add Product</a>
+                    </div>
+                </li> -->
+            <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" [routerLink]="['login']">Login</a>
+            </li> 
         </ul>
         </div>
       </nav>

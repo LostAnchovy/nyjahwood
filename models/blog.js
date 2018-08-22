@@ -10,6 +10,9 @@ const blogSchema = mongoose.Schema({
     author:{
         type: String,
     },
+    image:{
+        type:String,
+    }
 },{timestamps: true });
 
 var Blog = mongoose.model('Blog', blogSchema)
