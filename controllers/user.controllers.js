@@ -22,3 +22,11 @@ exports.findAll = (req,res)=>{
         res.send(500).send({error:'could not retrieve user'})
     })
 }
+
+exports.delete = (req, res)=>{
+    User.remove({_id: req.params.userId}).then(()=>{
+        res.status(204).end()
+    }).catch((err)=>{
+        res.send('error could not remove user from DB')
+    })
+}

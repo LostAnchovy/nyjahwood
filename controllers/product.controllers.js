@@ -23,7 +23,7 @@ exports.findAll = (req,res)=>{
 }
 
 exports.delete = (req, res)=>{
-    Product.remove({_id: req.params.id}).then(()=>{
+    Product.remove({_id: req.params.productId}).then(()=>{
         res.status(204).end()
     }).catch((err)=>{
         res.send('error could not remove product from DB')
