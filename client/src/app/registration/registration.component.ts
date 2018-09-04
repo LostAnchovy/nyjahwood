@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { DataService } from '../data.service'
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor( private formBuilder: FormBuilder, private _dataService:DataService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -30,6 +31,7 @@ export class RegistrationComponent implements OnInit {
       if (this.registerForm.invalid) {
         return;
       }
+
 
       alert('Success!! Thank your registering')
     }

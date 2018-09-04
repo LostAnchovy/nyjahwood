@@ -30,6 +30,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { NewblogComponent } from './newblog/newblog.component';
 import { EventslistComponent } from './eventslist/eventslist.component';
 import { EventsComponent } from './events/events.component';
+import { NeweventComponent } from './newevent/newevent.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { EventsComponent } from './events/events.component';
     NewblogComponent,
     EventslistComponent,
     EventsComponent,
+    NeweventComponent,
   ],
   imports: [
     BrowserModule,

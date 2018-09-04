@@ -1,0 +1,46 @@
+<app-adminheader></app-adminheader>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <app-dashboardlist></app-dashboardlist>
+    </div>
+    <div class="col-md-8">
+            <div class="container container-fluid">
+                <div class="card">
+                    <div class="card-header bg-warning text-center">
+                        <span class="text-white h2">Create a New Event</span>
+                    </div>
+                    <div class="card-body">
+                    <form #form="ngForm" (submit)="newEvent()">
+                        <div class="form-group">
+                         <label>Event Title </label>   
+                        <input class="form-control" type="text" name ="title" label="Title" [(ngModel)]="event.title" #Title="ngModel"  required>
+                        </div>
+                        <label>Event Date</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="date" label="Date" [(ngModel)]="event.date" #Date="ngModel" required> 
+                        </div>
+                        <label>Event Time</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="time" label="Time" [(ngModel)]="event.time" #Time="ngModel" required> 
+                        </div>
+                        <label>Event Location</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="location" label="Location" [(ngModel)]="event.location" #Location="ngModel" required> 
+                        </div>
+                        <label>Event Description</label>   
+                        <div class="form-group">
+                        <textarea class="form-control" type="text" name ="description" required minlength="5" label="body" [(ngModel)]="event.description" #description="ngModel" rows="7"></textarea>
+                        </div>
+                        <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
+                        <!-- <label>Blog Image</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="image" label="image" [(ngModel)]="blog.image" #blogimage="ngModel" required>
+                        <small>please provide link to image file("http:\\www.hostace.com\nyjahwood\123.jpg")</small>
+                        </div> -->
+                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Submit</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div> 

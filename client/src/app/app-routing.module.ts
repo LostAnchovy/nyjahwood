@@ -20,6 +20,7 @@ import {NotfoundComponent} from './notfound/notfound.component'
 import {LoginComponent} from './login/login.component'
 import {EventslistComponent} from './eventslist/eventslist.component'
 import {EventsComponent} from './events/events.component'
+import {NeweventComponent} from './newevent/newevent.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'admin/dashboard/bloglist', component: BloglistComponent },
   { path: 'admin/dashboard/eventslist', component: EventslistComponent },
   { path: 'admin/dashboard/newblog', component: NewblogComponent },
+  { path: 'admin/dashboard/newevent', component: NeweventComponent },
   { path: 'admin/dashboard/userslist', component: UserslistComponent },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
