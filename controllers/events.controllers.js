@@ -5,7 +5,7 @@ exports.create=(req,res)=>{
         Title: req.body.title,
         Date: req.body.date,
         Time: req.body.time,
-        Location: req.body.description,
+        Location: req.body.location,
         Description: req.body.description,
     }).then(newEvent=>{
         res.json(newEvent)

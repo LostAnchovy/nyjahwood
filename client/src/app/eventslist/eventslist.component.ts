@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../data.service'
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-eventslist',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventslist.component.css']
 })
 export class EventslistComponent implements OnInit {
+events
+  constructor(private _dataService:DataService) { }
 
-  constructor() { }
+  removeEvents(events, id){
+    this._dataService.removeEvent(events, id)
+  }
 
   ngOnInit() {
+    this._dataService.getAllEvents();
+
+    this._dataService.events.subscribe(
+      (events)=> {this.events = events;}
+    );
+    
   }
 
 }

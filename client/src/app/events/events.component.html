@@ -2,70 +2,9 @@
   <h1 class="text-center">Nyjahwoods Upcoming Events</h1>
   <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ratione qui cupiditate explicabo quae nostrum! Velit atque et minus id fuga quo quasi obcaecati fugit hic doloremque? Nihil, mollitia itaque.</p>
   <div class="row">
-    <!-- Card deck -->
-<div class="card-deck">
 
     <!-- Card -->
-    <div class="card mb-4 z-depth-1">
-  
-      <!--Card image-->
-      <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-  
-      <!--Card content-->
-      <div class="card-body">
-  
-        <!--Title-->
-        <h4 class="card-title">Event Title</h4>
-        <div>
-        <p class="font-weight-bold">Date and Time</p>
-        <span class="card-text">Tue, October 2, 2018</span>
-        <br>
-        <span class="card-text">11:30 AM – 2:00 PM PDT</span>
-       </div>
-        <div class="mt-1">
-        <p class="font-weight-bold">Location</p>
-        <span class="card-text">Embassy Suites Santa Clara - Silicon Valley,2885 Lakeside Drive Santa Clara / San Jose, CA 95054</span>
-        </div>
-        <div class="mt-1">
-        <p class="font-weight-bold">Description</p>
-        <p class="card-text">Some quick example text to build on the Event Title and make up the bulk of the card's content.</p>
-        <i class="far fa-calendar-alt fa-2x"></i>
-      </div>
-      </div>
-  
-    </div>
-    <!-- Card -->
-  
-    <!-- Card -->
-    <div class="card mb-4 z-depth-1">
-  
-      <!--Card image-->
-      <div class="view overlay">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-  
-      <!--Card content-->
-      <div class="card-body">
-  
-        <!--Title-->
-        <h4 class="card-title">Event Title</h4>
-        <!--Text-->
-        <p class="card-text">Some quick example text to build on the Event Title and make up the bulk of the card's content.</p>
-        <i class="far fa-calendar-alt fa-2x"></i>
-      </div>
-    </div>
-    <!-- Card -->
-  
-    <!-- Card -->
-    <div class="card mb-4 z-depth-1">
+    <div class="card m-2 z-depth-1 p-2" *ngFor ="let event of events">
   
       <!--Card image-->
       <div class="view overlay">
@@ -79,16 +18,24 @@
       <div class="card-body">
   
         <!--Title-->
-        <h4 class="card-title">Event Title</h4>
-        <!--Text-->
-        <p class="card-text">Some quick example text to build on the Event Title and make up the bulk of the card's content.</p>
+        <h4 class="card-title">{{event.Title}}</h4>
+        <div>
+        <p class="font-weight-bold">Date and Time</p>
+        <span class="card-text">{{event.Date}}</span>
+        <br>
+        <span class="card-text">{{event.Time}}</span>
+       </div>
+        <div class="mt-1">
+        <p class="font-weight-bold">Location</p>
+        <span class="card-text">{{event.Location}}</span>
+        </div>
+        <div class="mt-1">
+        <p class="font-weight-bold">Description</p>
+        <p class="card-text"> {{event.Description}}</p>
         <i class="far fa-calendar-alt fa-2x"></i>
+      </div>
       </div>
   
     </div>
     <!-- Card -->
-  
-  </div>
-  <!-- Card deck -->
-  </div>
 </div>

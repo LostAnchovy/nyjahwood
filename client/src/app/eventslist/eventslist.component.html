@@ -19,16 +19,16 @@
                     <th>Time</th>
                     <th>Admin Privelges </th>
                   </tr>
-                  <tbody >
+                  <tbody *ngFor ="let event of events">
                   <tr class="bg-white">
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
+                    <td>{{event.Title}}</td>
+                    <td>{{event.Description}}</td>
+                    <td>{{event.Location}}</td>
+                    <td>{{event.Date}}</td>
+                    <td>{{event.Time}}</td>
                     <td> 
                       <button class="btn-warning">Update</button>
-                      <button class="btn-danger">Delete</button> 
+                      <button class="btn-danger" (click)="removeEvents(event, event._id)">Delete</button> 
                     </td>
                   </tr>
                   </tbody>
