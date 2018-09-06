@@ -9,14 +9,16 @@ import { DataService} from '../data.service'
 export class UserslistComponent implements OnInit {
 users =[];
 
-  constructor(private _dataservice:DataService) { 
-
+  constructor(private _dataService:DataService) { }
+  
+  removeUser(user, id){
+    this._dataService.removeUser(user, id)
   }
 
   ngOnInit() {
-    this._dataservice.getAllUsers();
+    this._dataService.getAllUsers();
 
-    this._dataservice.users.subscribe(
+    this._dataService.users.subscribe(
       (users)=> {this.users = users;}
     );
   }

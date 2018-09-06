@@ -18,8 +18,9 @@
       </div>
       <div class="col-lg-7 col-xl-8">
         <h3 class="font-weight-bold mb-3"><strong>{{blog.title}}</strong></h3>
+        <p>Date published:  {{blog.createdAt | date: 'MMM d, y'}}</p>
         <p class="dark-grey-text">{{blog.body}}</p>
-        <p>by <a class="font-weight-bold">{{blog.author}}</a>, 19/04/2018</p>
+        <p>by <a class="font-weight-bold">{{blog.author}}</a></p>
 
       </div>
       <!-- Grid column -->

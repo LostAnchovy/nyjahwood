@@ -21,7 +21,7 @@
         <h4 class="card-title">{{event.Title}}</h4>
         <div>
         <p class="font-weight-bold">Date and Time</p>
-        <span class="card-text">{{event.Date}}</span>
+        <span class="card-text">{{event.Date | date: 'MMMM d, y'}}</span>
         <br>
         <span class="card-text">{{event.Time}}</span>
        </div>

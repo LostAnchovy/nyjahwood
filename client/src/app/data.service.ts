@@ -69,6 +69,14 @@ export class DataService {
     );
   }
 
+  removeUser(product, id) {
+    this._http.delete('/api/user/' + id).subscribe(
+      (response: any[]) => {
+        this.getAllUsers();
+       }
+    );
+  }
+
 
   removeEvent(event, id) {
     this._http.delete('/api/events/' + id).subscribe(

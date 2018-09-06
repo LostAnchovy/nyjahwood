@@ -5,10 +5,10 @@ const eventSchema = mongoose.Schema({
         type: String
     },
     Date:{
-        type: String
+        type: Date
     },
     Time:{
-        type:String
+        type: String
     },
     Location:{
         type:String

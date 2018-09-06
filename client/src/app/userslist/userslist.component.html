@@ -24,7 +24,9 @@
                     <td>{{user.email}}</td>
                     <td>{{user.createdAt}}</td>
                     <td> <button class="btn-warning">view</button> 
-                         <button class="btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" type="button">delete</button> </td>
+                         <!-- <button class="btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" type="button">delete</button>  -->
+                         <button class="btn-danger" (click)="removeUser(user, user._id)">delete</button>
+                        </td>
                 </tbody>
                 </table>
               </div>
@@ -34,7 +36,7 @@
   </div>
 
 
-<!--Modal: modalConfirmDelete-->
+<!-- Modal: modalConfirmDelete-->
 <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
             <!--Content-->
@@ -59,4 +61,4 @@
             <!--/.Content-->
         </div>
     </div>
-    <!--Modal: modalConfirmDelete-->
+    <!--Modal: modalConfirmDelete -->
