@@ -53,6 +53,12 @@ export class DataService {
     );
   }
 
+  newUser(user){
+    this._http.post('/api/newuser', user).subscribe(
+      (response:any)=>{}
+    );
+  }
+
   removeBlog(blog, id) {
     this._http.delete('/api/blog/' + id).subscribe(
       (response: any[]) => {

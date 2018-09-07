@@ -8,7 +8,7 @@ var Blog = require('../controllers/blog.controllers')
 var Events = require ('../controllers/events.controllers.js')
 
 
-router.post('/api/register', User.create);
+router.post('/api/newuser', User.create);
 router.get('/api/users/all', User.findAll);
 router.delete('/api/user/:userId', User.delete);
 
