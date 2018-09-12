@@ -19,7 +19,7 @@
         <td>{{product.description}}</td>
         <td>{{product.dimensions}}</td>
         <td>${{product.price}}</td>
-        <td>{{product.updatedAt}}</td>
+        <td>{{product.updatedAt | date: 'MMM d y'}}</td>
         <td>
           <button class="btn-warning">Update</button>
           <button class="btn-danger" (click)="removeProduct(product, product._id)">Delete</button> </td>

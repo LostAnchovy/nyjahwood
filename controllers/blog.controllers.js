@@ -30,6 +30,15 @@ exports.delete = (req, res)=>{
     })
 }
 
+exports.count = (req,res)=>{
+    Blog.count()
+    .then((blogs)=>{
+        res.json(blogs)
+    }).catch((err)=>{
+        res.send(500).send({error:'could not blog count'})
+    })
+}
+
 exports.update = (req, res) => {
     var id = {_id: req.params.blogId}
 	Blog.update(id,req.body) 

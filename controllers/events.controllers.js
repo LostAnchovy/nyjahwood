@@ -23,6 +23,15 @@ exports.findAll = (req,res)=>{
     })
 }
 
+exports.count = (req,res)=>{
+    Events.count()
+    .then((events)=>{
+        res.json(events)
+    }).catch((err)=>{
+        res.send(500).send({error:'could not event count'})
+    })
+}
+
 exports.delete = (req, res)=>{
     Events.remove({_id: req.params.eventsId}).then(()=>{
         res.status(204).end()

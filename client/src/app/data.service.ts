@@ -8,6 +8,10 @@ export class DataService {
   products = new BehaviorSubject([]);
   blogs = new BehaviorSubject ([]);
   events = new BehaviorSubject ([]);
+  usersCount = new BehaviorSubject ([]);
+  blogsCount = new BehaviorSubject ([]);
+  eventsCount = new BehaviorSubject ([]);
+  productsCount = new BehaviorSubject ([]);
 
   constructor(private _http: HttpClient) { }
 
@@ -33,6 +37,34 @@ export class DataService {
     this._http.get('/api/events/all').subscribe((response:any)=>{
       this.events.next(response)
     })
+  }
+
+  userCount() {
+    this._http.get('/api/users/count').subscribe(
+      (response: any) => { 
+        this.usersCount.next(response) 
+      });
+  } 
+
+  blogCount() {
+    this._http.get('/api/blogs/count').subscribe(
+      (response: any) => { 
+        this.blogsCount.next(response) 
+      });
+  } 
+
+  eventCount() {
+    this._http.get('/api/events/count').subscribe(
+      (response: any) => { 
+        this.eventsCount.next(response) 
+      });
+  }
+
+  productCount() {
+    this._http.get('/api/products/count').subscribe(
+      (response: any) => { 
+        this.productsCount.next(response) 
+      });
   }
 
   newProduct(product) {

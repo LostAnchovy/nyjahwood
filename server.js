@@ -3,7 +3,6 @@ var app = express();
 var mongoose = require('mongoose')
 var passport = require ('passport')
 var Localstrategy = require('passport-local').Strategy
-var flash = require ('flash')
 var path = require ('path')
 var session = require('express-session')
 var bodyparser = require('body-parser')
@@ -16,8 +15,6 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 
 app.use (express.static(path.join(__dirname,'./client/dist/')));
-
-app.use(require('./routes/routes'))
 
 // require('./config/passport')(passport)
 // require('./routes/routes')(app, passport)
@@ -42,13 +39,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(session());
 app.use(passport.session());
-app.use(flash());
+app.use(require('./routes/routes'))
 
-passport.use(new Localstrategy ((username, pass, cb)=>{
+passport.use(new Localstrategy ((email, pass, cb)=>{
   var hashedPass = bcrypt.hashSync(pass,10)
-  User.findOne(
-      {user_name: username}
-  ).then(function(user, err){
+  User.findOne({
+   email: email
+  }).then(function(user, err){
     if (err) { return cb(err); }
     if (!user) { 
     return cb(null, false); }
@@ -59,20 +56,21 @@ passport.use(new Localstrategy ((username, pass, cb)=>{
 }))
 
 passport.serializeUser((user, cb)=>{
-  cb(null, user._id);
+  cb(null, user.id);
 });
 
-passport.deserializeUser((_id, cb)=> {
-  User.findById(_id).then((user)=>{
+passport.deserializeUser((id, cb)=> {
+  User.findById(id).then((user)=>{
     cb(null, user);
   });
 });
 
-// build admin side
-// build database
+app.post('/login', passport.authenticate('local', { 
+  failureRedirect: '/',
+  successRedirect: '/login',
+}))
+
 // build authentication
-// build configuration files
-// build service.ts file
 
 app.all("*", (req, res) => {
     res.sendFile(path.resolve('./client/dist/index.html'));

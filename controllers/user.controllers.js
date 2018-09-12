@@ -24,6 +24,16 @@ exports.findAll = (req,res)=>{
     })
 }
 
+exports.count = (req,res)=>{
+    User.count()
+    .then((users)=>{
+        res.json(users)
+    }).catch((err)=>{
+        res.send(500).send({error:'could not retrieve users'})
+    })
+}
+
+
 exports.delete = (req, res)=>{
     User.remove({_id: req.params.userId}).then(()=>{
         res.status(204).end()
