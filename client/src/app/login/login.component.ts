@@ -10,6 +10,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  user ={
+     email: '',
+     password: '',
+  }
 
   constructor(private _dataService: DataService, private formBuilder: FormBuilder) { }
 
@@ -22,4 +26,12 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
   
+  logIn(){
+    this.submitted = true
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+    
+  }
 }
