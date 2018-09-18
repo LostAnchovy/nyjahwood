@@ -19,7 +19,7 @@ app.use (express.static(path.join(__dirname,'./client/dist/')));
 // require('./config/passport')(passport)
 // require('./routes/routes')(app, passport)
 mongoose.connect(config.db,{
-  useMongoClient: true
+  useNewUrlParser: true
 })
 
 app.use(session({

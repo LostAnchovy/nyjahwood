@@ -14,6 +14,7 @@ exports.create = (req, res)=>{
         res.send('new user not entered into DB')
     })
   }
+  // creates User by 
 
 exports.findAll = (req,res)=>{
     User.find()

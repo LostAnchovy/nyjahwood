@@ -59,9 +59,6 @@ export class RegistrationComponent implements OnInit {
         return;
       }
 
-
-
-
       alert('Success!! Thank your registering')
     }
 
