@@ -27,7 +27,7 @@
                     <td>{{event.Date | date:'MMM d y'}}</td>
                     <td>{{event.Time}}</td>
                     <td> 
-                      <button class="btn-warning">Update</button>
+                      <button class="btn-warning"[routerLink]="['/admin/dashboard/editevent', event._id]">Update</button>
                       <button class="btn-danger" (click)="removeEvents(event, event._id)">Delete</button> 
                     </td>
                   </tr>

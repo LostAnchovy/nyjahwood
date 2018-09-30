@@ -31,6 +31,7 @@ import { NewblogComponent } from './newblog/newblog.component';
 import { EventslistComponent } from './eventslist/eventslist.component';
 import { EventsComponent } from './events/events.component';
 import { NeweventComponent } from './newevent/newevent.component';
+import { EditeventComponent } from './editevent/editevent.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { NeweventComponent } from './newevent/newevent.component';
     EventslistComponent,
     EventsComponent,
     NeweventComponent,
+    EditeventComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<app-adminheader></app-adminheader>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <app-dashboardlist></app-dashboardlist>
+    </div>
+    <div class="col-md-8">
+            <div class="container container-fluid">
+                <div class="card">
+                    <div class="card-header bg-warning text-center">
+                        <span class="text-white h2">Edit Event</span>
+                    </div>
+                    <div class="card-body">
+                    <form #form="ngForm">
+                        <div class="form-group">
+                         <label>Event Title </label>   
+                        <input class="form-control" type="text" name ="title" label="Title" [(ngModel)]="event.Title" #Title="ngModel"required>
+                        </div>
+                        <label>Event Date</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="date" name="date" label="Date" [(ngModel)]="event.Date" #Date="ngModel" required> 
+                        </div>
+                        <label>Event Time</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="time" name="time" label="Time" [(ngModel)]="event.Time" #Time="ngModel" required> 
+                        </div>
+                        <label>Event Location</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="location" label="Location" [(ngModel)]="event.Location" #Location="ngModel" required> 
+                        </div>
+                        <label>Event Description</label>   
+                        <div class="form-group">
+                        <textarea class="form-control rowheight" type="text" name ="description" required minlength="5" label="body" [(ngModel)]="event.Description" #description="ngModel" rows="10"></textarea>
+                        </div>
+                        <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
+                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Submit</button>
+                    </form>
+                    <div class="alert alert-warning alert-dismissible" *ngIf="!form.invalid">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                             Please Edit form and submit
+                          </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div> 

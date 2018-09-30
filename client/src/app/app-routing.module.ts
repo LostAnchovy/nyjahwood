@@ -21,6 +21,7 @@ import {LoginComponent} from './login/login.component'
 import {EventslistComponent} from './eventslist/eventslist.component'
 import {EventsComponent} from './events/events.component'
 import {NeweventComponent} from './newevent/newevent.component'
+import {EditeventComponent} from './editevent/editevent.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'admin/dashboard/eventslist', component: EventslistComponent },
   { path: 'admin/dashboard/newblog', component: NewblogComponent },
   { path: 'admin/dashboard/newevent', component: NeweventComponent },
+  { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent},
   { path: 'admin/dashboard/userslist', component: UserslistComponent },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
