@@ -40,3 +40,23 @@ exports.delete = (req, res)=>{
     })
 }
 
+exports.findOne = (req,res) =>{
+    var id = {_id: req.params.eventId}
+    Events.findOne(id)
+    .then(event=>{
+        res.json(event)
+    }).catch((err)=>{
+        res.json({error: 'can not find event'})
+    })
+}
+
+exports.update = (req, res) => {
+    var id = {_id: req.params.eventId}
+	Events.update(id,req.body) 
+	.then((updatedEvent) => {
+		res.json(updatedEvent)
+	}).catch((err)=>{
+        res.send('error updating event information')
+    })
+};
+

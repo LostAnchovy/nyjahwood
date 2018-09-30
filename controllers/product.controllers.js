@@ -31,6 +31,16 @@ exports.count = (req,res)=>{
     })
 }
 
+exports.findOne = (req,res) =>{
+    var id = {_id: req.params.productId}
+    Product.findOne(id)
+    .then(product=>{
+        res.json(product)
+    }).catch((err)=>{
+        res.json({error: 'can not find product'})
+    })
+}
+
 exports.delete = (req, res)=>{
     Product.remove({_id: req.params.productId}).then(()=>{
         res.status(204).end()

@@ -38,6 +38,15 @@ exports.count = (req,res)=>{
         res.send(500).send({error:'could not blog count'})
     })
 }
+exports.findOne = (req,res) =>{
+    var id = {_id: req.params.blogId}
+    Blog.findOne(id)
+    .then(blog=>{
+        res.json(blog)
+    }).catch((err)=>{
+        res.json({error: 'can not find blog'})
+    })
+}
 
 exports.update = (req, res) => {
     var id = {_id: req.params.blogId}
