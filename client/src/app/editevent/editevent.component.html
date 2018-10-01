@@ -21,7 +21,7 @@
                         </div>
                         <label>Event Time</label>  
                         <div class="form-group">
-                        <input class="form-control" type="time" name="time" label="Time" [(ngModel)]="event.Time" #Time="ngModel" required> 
+                        <input class="form-control" type="text" name="time" label="Time" [(ngModel)]="event.Time" #Time="ngModel" required> 
                         </div>
                         <label>Event Location</label>  
                         <div class="form-group">
@@ -32,7 +32,7 @@
                         <textarea class="form-control rowheight" type="text" name ="description" required minlength="5" label="body" [(ngModel)]="event.Description" #description="ngModel" rows="10"></textarea>
                         </div>
                         <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
-                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Submit</button>
+                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Update</button>
                     </form>
                     <div class="alert alert-warning alert-dismissible" *ngIf="!form.invalid">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

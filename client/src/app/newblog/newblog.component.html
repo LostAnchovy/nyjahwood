@@ -21,7 +21,7 @@
                         </div>
                         <label>Blog Body</label>   
                         <div class="form-group">
-                        <textarea class="form-control" type="text" name ="body" required minlength="5" label="body" [(ngModel)]="blog.body" #description="ngModel" rows="7"></textarea>
+                        <textarea class="form-control blogbody" type="text" name ="body" required minlength="5" label="body" [(ngModel)]="blog.body" #description="ngModel" rows="7"></textarea>
                         </div>
                         <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
                         <label>Blog Image</label>  
