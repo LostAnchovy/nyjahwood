@@ -1,5 +1,9 @@
-const User = require('../models/user')
-const bcrypt = require ('bcrypt')
+const User = require('../models/user');
+var bcrypt = require ('bcrypt')
+const jwt = require('jsonwebtoken');
+var config = require('../config/database');
+var passport = require('passport');
+require('../config/passport.js')(passport)
 
 exports.create = (req, res)=>{
     User.create({
@@ -8,13 +12,15 @@ exports.create = (req, res)=>{
         email:req.body.email,
         user_name:req.body.username,
         password: bcrypt.hashSync(req.body.password, 10)
-    }).then(()=>{
-        res.redirect('/')
+        // password: req.body.password
+    }).then((user)=>{
+        // res.redirect('/')
+        res.json(user)
     }).catch(err=>{
         res.send('new user not entered into DB')
     })
   }
-  // creates User by 
+  // creates User into DB
 
 exports.findAll = (req,res)=>{
     User.find()
@@ -34,6 +40,34 @@ exports.count = (req,res)=>{
     })
 }
 
+exports.signin =(req,res)=>{
+    if(!req.body.email || !req.body.password){
+        res.json({login:false, msg:'please enter a email and password'})
+    }
+    User.findOne({
+        email: req.body.email
+    }).then((user)=>{
+        let hash = user.password
+        console.log(hash)
+        //need to put in a check if user email is not found in the DB
+        //error fix: npm rebuild bcrypt --build-from-source
+        if(!user){
+            res.status(401).send({success:false, msg:'Authentication fail user not found in DB.'})
+        } else{
+            bcrypt.compare(req.body.password, hash,(err,result)=>{
+                console.log(req.body.password)
+                if(result){
+                    var token = jwt.sign(user.toJSON(), config.secret);
+                    console.log(token)
+                    res.json({success:true, token: 'JWT' + token})
+                }else{
+                    res.status(401).send({sucess:false, msg: 'Authentication failed. Wrong password'})
+                }
+            })
+        }
+    })
+}
+
 
 exports.delete = (req, res)=>{
     User.remove({_id: req.params.userId}).then(()=>{
@@ -42,3 +76,5 @@ exports.delete = (req, res)=>{
         res.send('error could not remove user from DB')
     })
 }
+
+

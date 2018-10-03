@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router} from '@angular/router'
+
 
 @Component({
   selector: 'app-login',
@@ -10,12 +13,13 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  authenticationflag: boolean = true
   user ={
      email: '',
      password: '',
   }
-
-  constructor(private _dataService: DataService, private formBuilder: FormBuilder) { }
+  result: any
+  constructor(private _dataService: DataService, private formBuilder: FormBuilder, private _http: HttpClient, private _router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -32,6 +36,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    
+
+    return this._http.post('/signin', this.user).subscribe(res=>{
+      this.result= res
+        console.log(this.result.token)
+        localStorage.setItem('token', this.result.token)
+        this._router.navigateByUrl('/admin/dashboard')
+    })
   }
 }

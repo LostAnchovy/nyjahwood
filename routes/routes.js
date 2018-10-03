@@ -1,18 +1,18 @@
 var express = require('express')
 var router = express.Router()
-var bcrypt = require('bcrypt')
 var passport = require('passport');
 var User = require('../controllers/user.controllers')
 var Product = require('../controllers/product.controllers')
 var Blog = require('../controllers/blog.controllers')
 var Events = require ('../controllers/events.controllers.js')
-var passportlocal = require('passport-local')
+
 
 //create routes for api for users
 router.post('/api/newuser', User.create);
 router.get('/api/users/count', User.count);
 router.get('/api/users/all', User.findAll);
 router.delete('/api/user/:userId', User.delete);
+router.post('/signin', User.signin)
 
 // create routes for api for products
 router.post('/api/newproduct', Product.create);
@@ -36,10 +36,5 @@ router.get('/api/events/all', Events.findAll)
 router.get('/api/event/:eventId', Events.findOne)
 router.delete('/api/events/:eventsId', Events.delete)
 router.put('/api/events/:eventsId', Events.update)
-
-// router.post('/login', passport.authenticate('local', { 
-//   failureRedirect: '/',
-//   successRedirect: '/login',
-// }))
 
 module.exports = router
