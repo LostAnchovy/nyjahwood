@@ -46,14 +46,16 @@ exports.signin =(req,res)=>{
     }
     User.findOne({
         email: req.body.email
+    }, (err, user)=>{
+        if(err) throw err
+        if(!user){
+            res.status(401).send({success: false, msg: 'Authentication failed. User not found.'})
+        }
     }).then((user)=>{
         let hash = user.password
         console.log(hash)
         //need to put in a check if user email is not found in the DB
         //error fix: npm rebuild bcrypt --build-from-source
-        if(!user){
-            res.status(401).send({success:false, msg:'Authentication fail user not found in DB.'})
-        } else{
             bcrypt.compare(req.body.password, hash,(err,result)=>{
                 console.log(req.body.password)
                 if(result){
@@ -64,7 +66,6 @@ exports.signin =(req,res)=>{
                     res.status(401).send({sucess:false, msg: 'Authentication failed. Wrong password'})
                 }
             })
-        }
     })
 }
 

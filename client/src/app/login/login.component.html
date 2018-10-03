@@ -2,9 +2,9 @@
 <div class="container z-depth-1 container-fluid">
     <h2 class="text-center"><i class="fas fa-grin-alt mr-3"></i>User Login</h2>
   <form [formGroup]="loginForm"  (ngSubmit)="logIn()">
-        <div class="alert alert-danger alert-dismissible m-2" *ngIf="!authenticationflag">
+        <div class="alert alert-danger alert-dismissible m-2 text-center" *ngIf="message !== ''">
                 <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Username or password is incorrect
+                <span>{{message}}</span>
               </div>
         <!-- <div class='form-text error' *ngIf="submitted">
                 <div *ngIf="loginForm.invalid" class="help-block error small">Username or password is incorrect.</div>
