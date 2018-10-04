@@ -21,6 +21,7 @@ router.get('/api/products/all', Product.findAll);
 router.get('/api/product/:productId', Product.findOne);
 router.get('/api/products/count', Product.count);
 router.delete('/api/product/:productId', Product.delete);
+router.put('/api/product/:productId', Product.update);
 
 // creat routes to make api for blog
 router.post('/api/newblog', Blog.create)

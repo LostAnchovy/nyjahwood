@@ -50,7 +50,7 @@ exports.findOne = (req,res) =>{
 
 exports.update = (req, res) => {
     var id = {_id: req.params.blogId}
-	Blog.updateOne(id,req.body, {new:true}) 
+	Blog.findByIdAndUpdate(id,req.body, {new:true}) 
 	.then((updatedBlog) => {
 		res.json(updatedBlog)
 	}).catch((err)=>{

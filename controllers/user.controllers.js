@@ -71,8 +71,9 @@ exports.signin =(req,res)=>{
 
 exports.update = (req, res) => {
     var id = {_id: req.params.userId}
-	User.update(id,req.body,{new:true}) 
+	User.findByIdAndUpdate(id,req.body,{new:true}) 
 	.then((updatedUser) => {
+        console.log(req.body)
 		res.json(updatedUser)
 	}).catch((err)=>{
         res.send('error updating user')

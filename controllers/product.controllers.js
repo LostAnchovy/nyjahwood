@@ -48,3 +48,13 @@ exports.delete = (req, res)=>{
         res.send('error could not remove product from DB')
     })
 }
+
+exports.update = (req, res) => {
+    var id = {_id: req.params.productId}
+	Product.findByIdAndUpdate(id,req.body,{new:true}) 
+	.then((updatedProduct) => {
+		res.json(updatedProduct)
+	}).catch((err)=>{
+        res.send('error updating product')
+    })
+};
