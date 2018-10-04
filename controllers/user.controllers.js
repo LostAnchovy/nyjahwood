@@ -14,8 +14,8 @@ exports.create = (req, res)=>{
         password: bcrypt.hashSync(req.body.password, 10)
         // password: req.body.password
     }).then((user)=>{
-        // res.redirect('/')
-        res.json(user)
+        var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1h' });
+        res.json({success:true, token: 'JWT' + token})
     }).catch(err=>{
         res.send('new user not entered into DB')
     })
@@ -59,7 +59,7 @@ exports.signin =(req,res)=>{
             bcrypt.compare(req.body.password, hash,(err,result)=>{
                 console.log(req.body.password)
                 if(result){
-                    var token = jwt.sign(user.toJSON(), config.secret);
+                    var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1h' });
                     console.log(token)
                     res.json({success:true, token: 'JWT' + token})
                 }else{

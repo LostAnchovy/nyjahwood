@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../data.service'
 import { Router} from "@angular/router";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -18,8 +19,8 @@ export class RegistrationComponent implements OnInit {
     username: '',
     password: '',
   }
-  constructor( private formBuilder: FormBuilder, private _dataService:DataService, private _router: Router) { }
-
+  result:any
+  constructor( private formBuilder: FormBuilder, private _dataService:DataService, private _router: Router, private _http:HttpClient) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -39,27 +40,21 @@ export class RegistrationComponent implements OnInit {
         return;
       }
 
-      this._dataService.newUser(this.user)
-      this.user = {
-        first_name:'',
-        last_name: '',
-        username: '',
-        email: '',
-        password:'',
-      }
-      alert('Success!! Thank your registering')
-      this._router.navigateByUrl('/')
-    }
-
-    onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-      if (this.registerForm.invalid) {
-        return;
-      }
-
-      alert('Success!! Thank your registering')
+      return this._http.post('/api/newuser', this.user).subscribe(res=>{
+        this.result= res
+        console.log(this.result)
+        localStorage.setItem('token', this.result.token)
+        this._router.navigateByUrl('/')
+      })
+      // this._dataService.newUser(this.user)
+      // this.user = {
+      //   first_name:'',
+      //   last_name: '',
+      //   username: '',
+      //   email: '',
+      //   password:'',
+      // }
+      // alert('Success!! Thank your registering')
     }
 
 }
