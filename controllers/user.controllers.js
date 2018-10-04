@@ -69,6 +69,16 @@ exports.signin =(req,res)=>{
     })
 }
 
+exports.update = (req, res) => {
+    var id = {_id: req.params.userId}
+	User.update(id,req.body,{new:true}) 
+	.then((updatedUser) => {
+		res.json(updatedUser)
+	}).catch((err)=>{
+        res.send('error updating user')
+    })
+};
+
 
 exports.delete = (req, res)=>{
     User.remove({_id: req.params.userId}).then(()=>{

@@ -13,6 +13,7 @@ router.get('/api/users/count', User.count);
 router.get('/api/users/all', User.findAll);
 router.delete('/api/user/:userId', User.delete);
 router.post('/signin', User.signin)
+router.put('/api/user/:userId', User.update)
 
 // create routes for api for products
 router.post('/api/newproduct', Product.create);

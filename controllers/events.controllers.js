@@ -52,7 +52,7 @@ exports.findOne = (req,res) =>{
 
 exports.update = (req, res) => {
     var id = {_id: req.params.eventId}
-	Events.update(id,req.body) 
+	Events.update(id,req.body,{new:true}) 
 	.then((updatedEvent) => {
 		res.json(updatedEvent)
 	}).catch((err)=>{
