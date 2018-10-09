@@ -12,7 +12,7 @@ require('../config/passport')(passport)
 router.post('/api/newuser', User.create);
 router.get('/api/users/count', User.count);
 router.get('/api/users/all', User.findAll);
-router.delete('/api/user/:userId', User.delete);
+router.delete('/api/user/:userId',authenticate, User.delete);
 router.post('/signin', User.signin)
 router.put('/api/user/:userId', User.update)
 
