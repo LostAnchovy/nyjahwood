@@ -11,16 +11,13 @@ import { Observable } from 'rxjs/Observable';
 export class NavbarComponent implements OnInit {
 // isAuthenticated:boolean = false;
 user:any
-isAuthenticated:any;
+
 
   
-constructor(private _router: Router, private auth: AuthService) { }
+constructor(private _router: Router, private _auth: AuthService) { }
 
   ngOnInit() {
      this.user = localStorage.getItem('user')
-     this.isAuthenticated = this.auth.isAuthenticated()
-    // this.isLoggedIn = this.auth.isLoggedIn();
-     console.log(this.isAuthenticated)
   }
   
   logOut(){

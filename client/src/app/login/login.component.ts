@@ -42,11 +42,11 @@ export class LoginComponent implements OnInit {
 
     return this._http.post('/signin', this.user).subscribe(res=>{
       this.result= res
-        console.log(this.result.token)
+        console.log('jwt token:',this.result.token)
         console.log(this.result.user)
         localStorage.setItem('token', this.result.token),
         localStorage.setItem('user', this.result.user.first_name)
-        if(this.result.isAdmin == true){
+        if(this.result.user.isAdmin === true){
           this._router.navigateByUrl('/admin/dashboard')
         }else{
           this._router.navigateByUrl('/')
