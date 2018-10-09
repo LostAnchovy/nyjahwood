@@ -23,6 +23,7 @@ import {EventsComponent} from './events/events.component'
 import {NeweventComponent} from './newevent/newevent.component'
 import {EditeventComponent} from './editevent/editevent.component'
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { RoleGuardService as RoleGuard } from './role-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -32,15 +33,15 @@ const routes: Routes = [
   { path: 'ourstory', component: OurstoryComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/addproduct', component: AddproductComponent,canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/pageslist', component: PageslistComponent, canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/bloglist', component: BloglistComponent, canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/eventslist', component: EventslistComponent, canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/newblog', component: NewblogComponent,canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/newevent', component: NeweventComponent,canActivate:[AuthGuard] },
-  { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent, canActivate:[AuthGuard]},
-  { path: 'admin/dashboard/userslist', component: UserslistComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dashboard', component: DashboardComponent, canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/addproduct', component: AddproductComponent,canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/pageslist', component: PageslistComponent, canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/bloglist', component: BloglistComponent, canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/eventslist', component: EventslistComponent, canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/newblog', component: NewblogComponent,canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/newevent', component: NeweventComponent,canActivate:[RoleGuard] },
+  { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent, canActivate:[RoleGuard]},
+  { path: 'admin/dashboard/userslist', component: UserslistComponent, canActivate:[RoleGuard] },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
   { path: 'collections/dining', component: DiningComponent },

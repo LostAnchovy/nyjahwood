@@ -26,6 +26,7 @@ import { AdminheaderComponent } from './adminheader/adminheader.component';
 import { DataService } from './data.service';
 import { AuthService} from './auth.service';
 import { AuthGuardService} from './auth-guard.service'
+import { RoleGuardService } from './role-guard.service'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -75,7 +76,7 @@ import { TokenInterceptorService } from './token-interceptor.service'
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DataService, AuthService, AuthGuardService,{provide: HTTP_INTERCEPTORS,useClass: TokenInterceptorService, multi: true
+  providers: [DataService,RoleGuardService, AuthService, AuthGuardService,{provide: HTTP_INTERCEPTORS,useClass: TokenInterceptorService, multi: true
   }],
   bootstrap: [AppComponent]
 })

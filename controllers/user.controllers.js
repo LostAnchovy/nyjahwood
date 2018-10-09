@@ -3,6 +3,7 @@ var bcrypt = require ('bcrypt')
 const jwt = require('jsonwebtoken');
 var config = require('../config/database');
 var passport = require('passport');
+var jwtDecoded = require('jwt-decode')
 require('../config/passport')(passport)
 
 exports.create = (req, res)=>{
@@ -34,10 +35,6 @@ exports.create = (req, res)=>{
 // }
 
 exports.findAll = (req, res)=>{
-    // var header = req.headers['authorization']
-    // const bearer = header.split(' ');
-    // const token = bearer[1];
-    // req.token = token;
     var token = req.body.token || req.query.token || getToken(req.headers)
     console.log('parced authorization token',token)
     console.log('req.header:',req.headers)
