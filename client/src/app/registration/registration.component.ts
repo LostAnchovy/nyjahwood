@@ -44,6 +44,7 @@ export class RegistrationComponent implements OnInit {
         this.result= res
         console.log(this.result)
         localStorage.setItem('token', this.result.token)
+        localStorage.setItem('user', this.result.user.first_name)
         this._router.navigateByUrl('/')
       })
       // this._dataService.newUser(this.user)

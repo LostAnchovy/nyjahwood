@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ContactComponent} from './contact/contact.component';
 import {CollectionsComponent} from './collections/collections.component';
@@ -22,6 +22,7 @@ import {EventslistComponent} from './eventslist/eventslist.component'
 import {EventsComponent} from './events/events.component'
 import {NeweventComponent} from './newevent/newevent.component'
 import {EditeventComponent} from './editevent/editevent.component'
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -31,15 +32,15 @@ const routes: Routes = [
   { path: 'ourstory', component: OurstoryComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/dashboard', component: DashboardComponent },
-  { path: 'admin/dashboard/addproduct', component: AddproductComponent },
-  { path: 'admin/dashboard/pageslist', component: PageslistComponent },
-  { path: 'admin/dashboard/bloglist', component: BloglistComponent },
-  { path: 'admin/dashboard/eventslist', component: EventslistComponent },
-  { path: 'admin/dashboard/newblog', component: NewblogComponent },
-  { path: 'admin/dashboard/newevent', component: NeweventComponent },
-  { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent},
-  { path: 'admin/dashboard/userslist', component: UserslistComponent },
+  { path: 'admin/dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/addproduct', component: AddproductComponent,canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/pageslist', component: PageslistComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/bloglist', component: BloglistComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/eventslist', component: EventslistComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/newblog', component: NewblogComponent,canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/newevent', component: NeweventComponent,canActivate:[AuthGuard] },
+  { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent, canActivate:[AuthGuard]},
+  { path: 'admin/dashboard/userslist', component: UserslistComponent, canActivate:[AuthGuard] },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
   { path: 'collections/dining', component: DiningComponent },

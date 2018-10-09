@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router'
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { setRootDomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
      password: '',
   }
   message = '';
-  result: any
+  result: any =[]
   constructor(private _dataService: DataService, private formBuilder: FormBuilder, private _http: HttpClient, private _router:Router) { }
 
   ngOnInit() {
@@ -42,8 +43,14 @@ export class LoginComponent implements OnInit {
     return this._http.post('/signin', this.user).subscribe(res=>{
       this.result= res
         console.log(this.result.token)
-        localStorage.setItem('token', this.result.token)
-        this._router.navigateByUrl('/admin/dashboard')
+        console.log(this.result.user)
+        localStorage.setItem('token', this.result.token),
+        localStorage.setItem('user', this.result.user.first_name)
+        if(this.result.isAdmin == true){
+          this._router.navigateByUrl('/admin/dashboard')
+        }else{
+          this._router.navigateByUrl('/')
+        }
     }, err =>{
       this.message = err.error.msg;
     })

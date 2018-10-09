@@ -5,13 +5,14 @@ var User = require('../controllers/user.controllers')
 var Product = require('../controllers/product.controllers')
 var Blog = require('../controllers/blog.controllers')
 var Events = require ('../controllers/events.controllers.js')
-
+var authenticate = passport.authenticate('jwt', { session: false})
+require('../config/passport')(passport)
 
 //create routes for api for users
 router.post('/api/newuser', User.create);
 router.get('/api/users/count', User.count);
 router.get('/api/users/all', User.findAll);
-router.delete('/api/user/:userId', User.delete);
+router.delete('/api/user/:userId',authenticate, User.delete);
 router.post('/signin', User.signin)
 router.put('/api/user/:userId', User.update)
 

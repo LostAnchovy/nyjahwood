@@ -3,7 +3,7 @@ var bcrypt = require ('bcrypt')
 const jwt = require('jsonwebtoken');
 var config = require('../config/database');
 var passport = require('passport');
-require('../config/passport.js')(passport)
+require('../config/passport')(passport)
 
 exports.create = (req, res)=>{
     User.create({
@@ -14,21 +14,43 @@ exports.create = (req, res)=>{
         password: bcrypt.hashSync(req.body.password, 10)
         // password: req.body.password
     }).then((user)=>{
-        var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1h' });
-        res.json({success:true, token: 'JWT' + token})
+        var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1d' });
+        res.json({success:true, token: 'JWT' + token, user: user})
     }).catch(err=>{
         res.send('new user not entered into DB')
     })
   }
   // creates User into DB
 
-exports.findAll = (req,res)=>{
-    User.find()
-    .then((users)=>{
-        res.json(users)
-    }).catch((err)=>{
-        res.send(500).send({error:'could not retrieve user'})
-    })
+// exports.findAll = (req,res)=>{
+//     var token = getToken(req.headers);
+//     if(token)
+//     User.find()
+//     .then((users)=>{
+//         res.json(users)
+//     }).catch((err)=>{
+//         res.send(500).send({error:'could not retrieve user'})
+//     })
+// }
+
+exports.findAll = (req, res)=>{
+    // var header = req.headers['authorization']
+    // const bearer = header.split(' ');
+    // const token = bearer[1];
+    // req.token = token;
+    var token = req.body.token || req.query.token || getToken(req.headers)
+    console.log('parced authorization token',token)
+    console.log('req.header:',req.headers)
+    if(token){
+        User.find()
+        .then((users)=>{
+            res.json(users)
+        }).catch((err)=>{
+            res.send(500).send({error:'could not retrieve user'})
+        })
+    }else{
+        return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
 }
 
 exports.count = (req,res)=>{
@@ -57,11 +79,10 @@ exports.signin =(req,res)=>{
         //need to put in a check if user email is not found in the DB
         //error fix: npm rebuild bcrypt --build-from-source
             bcrypt.compare(req.body.password, hash,(err,result)=>{
-                console.log(req.body.password)
+                console.log('forms password:',req.body.password)
                 if(result){
-                    var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1h' });
-                    console.log(token)
-                    res.json({success:true, token: 'JWT' + token})
+                    var token = jwt.sign({_id: user._id, firstName: user.first_name, isAdmin: user.isAdmin}, config.secret, { expiresIn: '1d' });
+                    res.json({success:true, token: 'JWT' + token, user: user})
                 }else{
                     res.status(401).send({sucess:false, msg: 'Authentication failed. Wrong password'})
                 }
@@ -73,7 +94,6 @@ exports.update = (req, res) => {
     var id = {_id: req.params.userId}
 	User.findByIdAndUpdate(id,req.body,{new:true}) 
 	.then((updatedUser) => {
-        console.log(req.body)
 		res.json(updatedUser)
 	}).catch((err)=>{
         res.send('error updating user')
@@ -89,4 +109,16 @@ exports.delete = (req, res)=>{
     })
 }
 
+getToken = function (headers) {
+    if (headers && headers.authorization) {
+      var parted = headers.authorization.split(' ');
+      if (parted.length === 2) {
+        return parted[1];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
 

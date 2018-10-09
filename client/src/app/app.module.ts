@@ -24,6 +24,8 @@ import { BloglistComponent } from './bloglist/bloglist.component';
 import { UserslistComponent } from './userslist/userslist.component';
 import { AdminheaderComponent } from './adminheader/adminheader.component';
 import { DataService } from './data.service';
+import { AuthService} from './auth.service';
+import { AuthGuardService} from './auth-guard.service'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -32,6 +34,8 @@ import { EventslistComponent } from './eventslist/eventslist.component';
 import { EventsComponent } from './events/events.component';
 import { NeweventComponent } from './newevent/newevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service'
 
 @NgModule({
   declarations: [
@@ -71,7 +75,8 @@ import { EditeventComponent } from './editevent/editevent.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DataService],
+  providers: [DataService, AuthService, AuthGuardService,{provide: HTTP_INTERCEPTORS,useClass: TokenInterceptorService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
