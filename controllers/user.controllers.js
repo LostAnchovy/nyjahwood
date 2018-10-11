@@ -15,7 +15,7 @@ exports.create = (req, res) => {
         password: bcrypt.hashSync(req.body.password, 10)
     }).then((user) => {
         var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
-        res.json({ success: true, token: 'JWT' + token, user: user })
+        res.json({ success: true, token: token, user: user })
     }).catch(err => {
         res.status(401).send({ success: false, msg: 'Please try another Email or Username' })
     })
@@ -23,20 +23,41 @@ exports.create = (req, res) => {
 // creates User into DB
 
 
+// exports.findAll = (req, res) => {
+//     var token = req.body.token || req.query.token || getToken(req.headers)
+//     console.log('parced authorization token:', token)
+//     console.log('req.header:', req.headers)
+//     if (token) {
+//         User.find()
+//             .then((users) => {
+//                 res.json(users)
+//             }).catch((err) => {
+//                 res.send(500).send({ error: 'could not retrieve user' })
+//             })
+//     } else {
+//         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+//     }
+// }
+
 exports.findAll = (req, res) => {
     var token = req.body.token || req.query.token || getToken(req.headers)
     console.log('parced authorization token:', token)
     console.log('req.header:', req.headers)
-    if (token) {
-        User.find()
+    jwt.verify(token, config.secret, (err, user)=>{
+        console.log(user)
+        if(err){
+            res.status(401).send({success:false, msg:'Please provide a valid token'})
+        } else if(user.isAdmin ==false || user.isAdmin == null){
+            res.status(401).send({success:false, msg:'Unauthorized'})
+        }else{
+            User.find()
             .then((users) => {
                 res.json(users)
             }).catch((err) => {
                 res.send(500).send({ error: 'could not retrieve user' })
             })
-    } else {
-        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-    }
+        }
+    })
 }
 
 exports.count = (req, res) => {
@@ -68,7 +89,7 @@ exports.signin = (req, res) => {
             console.log('forms password:', req.body.password)
             if (result) {
                 var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
-                res.json({ success: true, token: 'JWT' + token, user: user })
+                res.json({ success: true, token: token, user: user })
             } else {
                 res.status(401).send({ sucess: false, msg: 'Authentication failed. Wrong password' })
             }
