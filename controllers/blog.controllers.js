@@ -9,7 +9,7 @@ exports.create =(req,res)=>{
     }).then((newAuthor)=>{
         res.json(newAuthor)
     }).catch(err=>{
-        res.send('could not enter new user into DB')
+        res.status(501).send({ success: false, msg:'can not enter Blog into DB'})
     })
 }
 
@@ -18,15 +18,15 @@ exports.findAll =(req,res)=>{
     .then((blogs)=>{
         res.json(blogs)
     }).catch((err)=>{
-        res.send('could not find all blog enteries')
+        res.status(501).send({ success: false, msg:'can not find all Blog enteries'})
     })
 }
 
 exports.delete = (req, res)=>{
     Blog.remove({_id: req.params.blogId}).then(()=>{
-        res.status(204).end()
+        res.send('Blog has been removed from DB')
     }).catch((err)=>{
-        res.send('error could not remove product from DB')
+        res.status(501).send({ success: false, msg:'could not remove product from DB'})
     })
 }
 
@@ -35,7 +35,7 @@ exports.count = (req,res)=>{
     .then((blogs)=>{
         res.json(blogs)
     }).catch((err)=>{
-        res.send(500).send({error:'could not blog count'})
+        res.status(501).send({ success: false, msg:'could not count Blogs'})
     })
 }
 exports.findOne = (req,res) =>{
@@ -44,7 +44,7 @@ exports.findOne = (req,res) =>{
     .then(blog=>{
         res.json(blog)
     }).catch((err)=>{
-        res.json({error: 'can not find blog'})
+        res.status(501).send({ success: false, msg:'could not find Blog'})
     })
 }
 
@@ -54,7 +54,7 @@ exports.update = (req, res) => {
 	.then((updatedBlog) => {
 		res.json(updatedBlog)
 	}).catch((err)=>{
-        res.send('error updating blog information')
+        res.send(501).send({succcess: false, msg: 'error updating blog'})
     })
 };
 

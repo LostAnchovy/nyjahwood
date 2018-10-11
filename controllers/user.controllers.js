@@ -17,45 +17,28 @@ exports.create = (req, res) => {
         var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
         res.json({ success: true, token: token, user: user })
     }).catch(err => {
-        res.status(401).send({ success: false, msg: 'Please try another Email or Username' })
+        res.status(501).send({ success: false, msg: 'Please try another Email or Username' })
     })
 }
 // creates User into DB
-
-
-// exports.findAll = (req, res) => {
-//     var token = req.body.token || req.query.token || getToken(req.headers)
-//     console.log('parced authorization token:', token)
-//     console.log('req.header:', req.headers)
-//     if (token) {
-//         User.find()
-//             .then((users) => {
-//                 res.json(users)
-//             }).catch((err) => {
-//                 res.send(500).send({ error: 'could not retrieve user' })
-//             })
-//     } else {
-//         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-//     }
-// }
 
 exports.findAll = (req, res) => {
     var token = req.body.token || req.query.token || getToken(req.headers)
     console.log('parced authorization token:', token)
     console.log('req.header:', req.headers)
-    jwt.verify(token, config.secret, (err, user)=>{
+    jwt.verify(token, config.secret, (err, user) => {
         console.log(user)
-        if(err){
-            res.status(401).send({success:false, msg:'Please provide a valid token'})
-        } else if(user.isAdmin ==false || user.isAdmin == null){
-            res.status(401).send({success:false, msg:'Unauthorized'})
-        }else{
+        if (err) {
+            res.status(401).send({ success: false, msg: 'Please provide a valid token' })
+        } else if (user.isAdmin == false || user.isAdmin == null) {
+            res.status(401).send({ success: false, msg: 'Unauthorized' })
+        } else {
             User.find()
-            .then((users) => {
-                res.json(users)
-            }).catch((err) => {
-                res.send(500).send({ error: 'could not retrieve user' })
-            })
+                .then((users) => {
+                    res.json(users)
+                }).catch((err) => {
+                    res.status(404).send({ error: 'could not retrieve user' })
+                })
         }
     })
 }
@@ -65,20 +48,20 @@ exports.count = (req, res) => {
         .then((users) => {
             res.json(users)
         }).catch((err) => {
-            res.send(500).send({ error: 'could not retrieve users' })
+            res.status(404).send({ error: 'could not retrieve user count' })
         })
 }
 
 exports.signin = (req, res) => {
     if (!req.body.email || !req.body.password) {
-        res.json({ login: false, msg: 'please enter a email and password' })
+        res.status(401).send({ login: false, msg: 'please enter a email and password' })
     }
     User.findOne({
         email: req.body.email
     }, (err, user) => {
         if (err) throw err
         if (!user) {
-            res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' })
+            res.status(403).send({ success: false, msg: 'Authentication failed. User not found.' })
         }
     }).then((user) => {
         let hash = user.password
@@ -91,7 +74,7 @@ exports.signin = (req, res) => {
                 var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
                 res.json({ success: true, token: token, user: user })
             } else {
-                res.status(401).send({ sucess: false, msg: 'Authentication failed. Wrong password' })
+                res.status(403).send({ sucess: false, msg: 'Authentication failed. Wrong password' })
             }
         })
     })
@@ -103,16 +86,17 @@ exports.update = (req, res) => {
         .then((updatedUser) => {
             res.json(updatedUser)
         }).catch((err) => {
-            res.send('error updating user')
+            res.status(404).send({ success: false, msg: 'can not update user' })
         })
 };
 
 
 exports.delete = (req, res) => {
+    var id = req.params.userId
     User.remove({ _id: req.params.userId }).then(() => {
-        res.status(204).end()
+        res.status(200).send({success: true, msg:`user id:${id} was successfully deleted`})
     }).catch((err) => {
-        res.send('error could not remove user from DB')
+        res.status(401).send({ success: false, msg: 'error could not remove user from DB' })
     })
 }
 

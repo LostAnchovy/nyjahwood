@@ -19,7 +19,7 @@
                     <th>Time</th>
                     <th>Admin Privelges </th>
                   </tr>
-                  <tbody *ngFor ="let event of events | sort: '-createdAt'">
+                  <tbody *ngFor ="let event of events | sort: 'createdAt'">
                   <tr class="bg-white">
                     <td>{{event.Title}}</td>
                     <td>{{event.Description}}</td>

@@ -10,7 +10,7 @@ exports.create=(req,res)=>{
     }).then(newEvent=>{
         res.json(newEvent)
     }).catch(err=>{
-        res.send('error entering new event into database')
+        res.status(501).send({ success: false, msg:'can not enter Event into DB'})
     })
 }
 
@@ -19,7 +19,7 @@ exports.findAll = (req,res)=>{
     .then((events)=>{
         res.json(events)
     }).catch((err)=>{
-        res.send(500).send({error:'could not retrieve events'})
+        res.status(501).send({ success: false, msg:'can not find All events'})
     })
 }
 
@@ -28,15 +28,16 @@ exports.count = (req,res)=>{
     .then((events)=>{
         res.json(events)
     }).catch((err)=>{
-        res.send(500).send({error:'could not event count'})
+        res.status(501).send({ success: false, msg:'can not count events'})
     })
 }
 
 exports.delete = (req, res)=>{
+    var id = req.params.eventsId
     Events.remove({_id: req.params.eventsId}).then(()=>{
-        res.status(204).end()
+        res.status(200).send({success: true, msg:`event ${id} was successfully deleted`})
     }).catch((err)=>{
-        res.send('error could not remove event from DB')
+        res.status(501).send({ success: false, msg:'can not delete event from DB'})
     })
 }
 

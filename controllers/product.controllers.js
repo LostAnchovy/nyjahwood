@@ -5,11 +5,12 @@ exports.create =(req,res)=>{
         product_name:req.body.name,
         description:req.body.description,
         price: req.body.price,
-        dimensions: req.body.dimensions
+        dimensions: req.body.dimensions,
+        category: req.body.category
     }).then((newProduct)=>{
         res.json(newProduct)
     }).catch(err=>{
-        res.send('product not entered into DB')
+        res.status(501).send({ success: false, msg: 'Product not entered into DB' })
     })
 }
 
@@ -18,7 +19,7 @@ exports.findAll = (req,res)=>{
     .then((products)=>{
         res.json(products)
     }).catch((err)=>{
-        res.send(500).send({error:'could not retrieve products'})
+        res.status(501).send({ success: false, msg:'could not retrieve products'})
     })
 }
 
@@ -27,7 +28,7 @@ exports.count = (req,res)=>{
     .then((products)=>{
         res.json(products)
     }).catch((err)=>{
-        res.send(500).send({error:'could not event count'})
+        res.status(501).send({ success: false, msg:'could not event count'})
     })
 }
 
@@ -37,15 +38,16 @@ exports.findOne = (req,res) =>{
     .then(product=>{
         res.json(product)
     }).catch((err)=>{
-        res.json({error: 'can not find product'})
+        res.status(501).send({ success: false, msg:'can not find product'})
     })
 }
 
 exports.delete = (req, res)=>{
+    var id = req.params.productId
     Product.remove({_id: req.params.productId}).then(()=>{
-        res.status(204).end()
+        res.status(200).send({success: true, msg:`product ${id} was successfully deleted`})
     }).catch((err)=>{
-        res.send('error could not remove product from DB')
+        res.status(501).send({ success: false, msg:'can not remove item from DB'})
     })
 }
 
@@ -55,6 +57,6 @@ exports.update = (req, res) => {
 	.then((updatedProduct) => {
 		res.json(updatedProduct)
 	}).catch((err)=>{
-        res.send('error updating product')
+        res.status(501).send({ success: false, msg:'error updating product'})
     })
 };

@@ -12,7 +12,8 @@ export class AddproductComponent implements OnInit {
 product ={
   name:'',
   description:'',
-  price:''
+  price:'',
+  category: ''
 }
 
   constructor(private _dataService:DataService, private _router:Router) { }
@@ -26,7 +27,8 @@ product ={
     this.product ={
       name:'',
       description:'',
-      price:''
+      price:'',
+      category: ''
     }
     this._router.navigateByUrl('/admin/dashboard')
   }

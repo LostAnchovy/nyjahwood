@@ -8,7 +8,6 @@ import { CollectionsComponent } from './collections/collections.component';
 import { ContactComponent } from './contact/contact.component';
 import { OurstoryComponent } from './ourstory/ourstory.component';
 import { FooterComponent } from './footer/footer.component';
-import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { CustomtablesComponent } from './customtables/customtables.component';
 import { StoolsComponent } from './stools/stools.component';
@@ -48,7 +47,6 @@ import { SortPipe } from './sort.pipe'
     ContactComponent,
     OurstoryComponent,
     FooterComponent,
-    AdminComponent,
     LoginComponent,
     CustomtablesComponent,
     StoolsComponent,
