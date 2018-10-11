@@ -9,8 +9,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-// isAuthenticated:boolean = false;
-user:any
+user:any 
 
 
   
@@ -25,5 +24,6 @@ constructor(private _router: Router, private _auth: AuthService) { }
     localStorage.removeItem('user')
     this._router.navigate(['login']);
   }
+
  
 }

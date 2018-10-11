@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service'
+import { BloglistComponent } from '../bloglist/bloglist.component';
 
 @Component({
   selector: 'app-blog',
@@ -14,9 +15,10 @@ blogs =[]
     this.dataService.getAllBlogs()
 
     this.dataService.blogs.subscribe(
-      (blogs)=> {this.blogs = blogs;}
+      (result)=> {this.blogs = result}
     );
 
   }
-
+  
+  
 }

@@ -14,8 +14,16 @@ app.use (express.static(path.join(__dirname,'./client/dist/')));
 
 // require('./config/passport')(passport)
 // require('./routes/routes')(app, passport)
+// mongoose.connect(config.db,{
+//   useNewUrlParser: true
+// })
+
 mongoose.connect(config.db,{
   useNewUrlParser: true
+}).then(res=>{
+  console.log('Successfully connected to DB!')
+}).catch(err=>{
+  res.send(401).send({error:true, msg:'error connecting to DB'})
 })
 
 app.use(session({
