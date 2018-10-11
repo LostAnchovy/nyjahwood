@@ -36,7 +36,8 @@ import { EventsComponent } from './events/events.component';
 import { NeweventComponent } from './newevent/newevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptorService } from './token-interceptor.service'
+import { TokenInterceptorService } from './token-interceptor.service';
+import { SortPipe } from './sort.pipe'
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { TokenInterceptorService } from './token-interceptor.service'
     EventsComponent,
     NeweventComponent,
     EditeventComponent,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

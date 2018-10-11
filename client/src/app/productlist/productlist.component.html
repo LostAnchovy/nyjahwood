@@ -13,7 +13,7 @@
         <th>Updated</th>
         <th>Admin Privelges</th>
       </tr>
-      <tbody *ngFor ="let product of products">
+      <tbody *ngFor ="let product of products | sort: '-createdAt'">
       <tr class="bg-white">
         <td>{{product.product_name}}</td>
         <td>{{product.description}}</td>

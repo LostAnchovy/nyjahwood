@@ -18,12 +18,12 @@
                     <th>Edited</th>
                     <th>Admin Privalges</th>
                   </tr>
-                  <tbody *ngFor="let blog of blogs">
+                  <tbody *ngFor="let blog of blogs | sort: '-createdAt'">
                   <tr class="bg-white">
                     <td>{{blog.author}}</td>
                     <td>{{blog.title}}</td>
                     <td>{{blog.body}}</td>
-                    <td>Nov 12, 2018</td>
+                    <td>{{blog.updatedAt | date:'MMM d y'}}</td>
                     <td> 
                       <button class="btn-warning">Update</button>
                       <button class="btn-danger" (click)="removeBlog(blog, blog._id)">Delete</button> 
