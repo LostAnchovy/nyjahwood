@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'
-import { Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-productlist',
@@ -8,20 +8,18 @@ import { Router} from "@angular/router";
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent implements OnInit {
-products 
-  constructor(private _dataService: DataService, private _router:Router) { }
-
-  removeProduct(product, id){
-    this._dataService.removeProduct(product, id)
-  }
+  products: any
+  constructor(private _dataService: DataService, private _router: Router) { }
 
   ngOnInit() {
     this._dataService.getAllProducts();
 
     this._dataService.products.subscribe(
-      (products)=> {this.products = products;}
+      (products) => { this.products = products; }
     );
   }
-
+  removeProduct(product, id) {
+    this._dataService.removeProduct(product, id)
+  }
 
 }

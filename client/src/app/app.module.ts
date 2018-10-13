@@ -36,7 +36,9 @@ import { NeweventComponent } from './newevent/newevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { SortPipe } from './sort.pipe'
+import { SortPipe } from './sort.pipe';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetComponent } from './reset/reset.component'
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { SortPipe } from './sort.pipe'
     NeweventComponent,
     EditeventComponent,
     SortPipe,
+    ResetpasswordComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

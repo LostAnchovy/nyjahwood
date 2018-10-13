@@ -1,12 +1,12 @@
 var express = require('express')
-var app = express();
-var mongoose = require('mongoose')
-var passport = require ('passport')
-var path = require ('path')
-var session = require('express-session')
-var bodyparser = require('body-parser')
-var port = process.env.PORT || 3000
-var config = require('./config/database')
+   app = express();
+   mongoose = require('mongoose')
+   passport = require ('passport')
+   path = require ('path')
+   session = require('express-session')
+   bodyparser = require('body-parser')
+   port = process.env.PORT || 3000
+   config = require('./config/database')
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));

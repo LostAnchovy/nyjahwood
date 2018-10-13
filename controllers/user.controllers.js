@@ -1,9 +1,13 @@
-const User = require('../models/user');
-var bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken');
+var User = require('../models/user');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 var config = require('../config/database');
 var passport = require('passport');
-var decoded = require('jwt-decode')
+var decoded = require('jwt-decode');
+var crypto  = require ('crypto');
+var async = require('async');
+var nodemailer = require ('nodemailer')
+
 require('../config/passport')(passport)
 
 exports.create = (req, res) => {
@@ -17,7 +21,7 @@ exports.create = (req, res) => {
         var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
         res.json({ success: true, token: token, user: user })
     }).catch(err => {
-        res.status(501).send({ success: false, msg: 'Please try another Email or Username' })
+        res.status(501).send({ success: false, msg: 'Please try another Email or Username'})
     })
 }
 // creates User into DB
@@ -50,6 +54,90 @@ exports.count = (req, res) => {
         }).catch((err) => {
             res.status(404).send({ error: 'could not retrieve user count' })
         })
+}
+
+// exports.reset = (req, res) =>{
+//     User.findOne({
+//         email:req.body.email
+//     }, (err, user) => {
+//         if (err) throw err
+//         if (!user) {
+//             res.status(401).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
+//         }
+//     }).then(user=>{
+//         res.json(user)
+//     }).catch(err=>{
+//         res.status(401).send({ login: false, msg: 'Error executing reset' })
+//     })
+// }
+
+exports.reset = (req, res, next) =>{
+    async.waterfall([
+        (done)=> {
+          crypto.randomBytes(20, function(err, buf) {
+            var token = buf.toString('hex');
+            console.log(token)
+            done(err, token);
+          });
+        },
+        (token, done)=> {
+          User.findOne({ email: req.body.email },(err, user)=>{
+            if (err) throw err 
+            if (!user) {
+                res.status(501).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
+            } 
+          }).then((user)=>{
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+            user.save((err)=> {
+              done(err, token, user);
+            res.json(user)
+            });
+          })
+        },
+        // script working down here
+        function(token, user, done) {
+          var smtpTransport = nodemailer.createTransport({
+            service: 'SendGrid',
+            auth: {
+              user: 'khoacn',
+              pass: 'Noodleboy_79'
+            }
+          });
+
+          var mailOptions = {
+            to: user.email,
+            from: 'passwordreset@nyjahwood.com',
+            subject: 'Nyjahwood Password Reset',
+            text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+              'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+              'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+              'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+          };
+          smtpTransport.sendMail(mailOptions, function(err) {
+            req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+            done(err, 'done');
+          });
+        }
+      ], function(err) {
+        if (err) return next(err);
+        res.redirect('/reset-password');
+      });
+    };   
+
+exports.reset_password =(req, res)=>{
+    console.log(req.params)
+    User.findOne({
+        resetPasswordToken: req.params.token,
+        // resetPasswordExpires: { $gt: Date.now()}
+    }, (err, user)=>{
+        if(err) throw err
+        if(!user || user.resetPasswordExpires==false){
+        res.status(401).send({success: false, msg:'Password reset token is invalid or has expired'})
+        }
+    }).then(user=>{
+        res.json(user)
+    })
 }
 
 exports.signin = (req, res) => {

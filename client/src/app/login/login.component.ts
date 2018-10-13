@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router'
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { setRootDomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
+
 
 
 @Component({

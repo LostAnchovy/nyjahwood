@@ -23,6 +23,8 @@ import {NeweventComponent} from './newevent/newevent.component'
 import {EditeventComponent} from './editevent/editevent.component'
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleGuardService as RoleGuard } from './role-guard.service';
+import { ResetpasswordComponent} from './resetpassword/resetpassword.component'
+import { ResetComponent} from './reset/reset.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -31,6 +33,8 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent },
   { path: 'ourstory', component: OurstoryComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'reset/:token', component: ResetComponent },
+  { path: 'reset-password', component: ResetpasswordComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate:[RoleGuard] },
   { path: 'admin/dashboard/addproduct', component: AddproductComponent,canActivate:[RoleGuard] },
   { path: 'admin/dashboard/pageslist', component: PageslistComponent, canActivate:[RoleGuard] },

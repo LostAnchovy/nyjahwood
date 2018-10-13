@@ -1,7 +1,5 @@
 var mongoose = require ('mongoose');
 var Schema = mongoose.Schema
-var bcrypt = require('bcrypt')
-
 const userSchema = mongoose.Schema({
     first_name:{
         type: String,
@@ -23,17 +21,14 @@ const userSchema = mongoose.Schema({
     isAdmin:{
         type:Boolean,
         default:false,
+    },
+    resetPasswordToken:{
+        type: String
+    },
+    resetPasswordExpires:{
+        type: Date
     }
 },{timestamps: true });
-
-// userSchema.methods.comparePassword = function (passw, cb) {
-//     bcrypt.compare(passw, this.password, function (err, isMatch) {
-//         if (err) {
-//             return cb(err);
-//         }
-//         cb(null, isMatch);
-//     });
-// };
 
 var User = mongoose.model('User', userSchema)
 module.exports = User;
