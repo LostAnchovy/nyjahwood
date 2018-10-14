@@ -29,7 +29,7 @@ exports.findAll = (req, res) => {
     var token = req.body.token || req.query.token || getToken(req.headers)
     console.log('parced authorization token:', token)
     console.log('req.header:', req.headers)
-    jwt.verify(token, config.secret, (err, user) => {
+    jwt.verify(token, process.env.SECRET, (err, user) => {
         console.log(user)
         if (err) {
             res.status(401).send({ success: false, msg: 'Please provide a valid token' })
@@ -55,20 +55,6 @@ exports.count = (req, res) => {
         })
 }
 
-// exports.reset = (req, res) =>{
-//     User.findOne({
-//         email:req.body.email
-//     }, (err, user) => {
-//         if (err) throw err
-//         if (!user) {
-//             res.status(401).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
-//         }
-//     }).then(user=>{
-//         res.json(user)
-//     }).catch(err=>{
-//         res.status(401).send({ login: false, msg: 'Error executing reset' })
-//     })
-// }
 
 exports.reset = (req, res, next) => {
     async.waterfall([
@@ -83,7 +69,7 @@ exports.reset = (req, res, next) => {
             User.findOne({ email: req.body.email }, (err, user) => {
                 if (err) throw err
                 if (!user) {
-                    res.status(501).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
+                    res.status(501).send({ success: false, msg: 'Email not found. Please enter a valid email.'})
                 }
             }).then((user) => {
                 user.resetPasswordToken = token;
@@ -107,14 +93,13 @@ exports.reset = (req, res, next) => {
                 to: user.email,
                 from: 'passwordreset@nyjahwood.com',
                 subject: 'Nyjahwood Password Reset',
-                text: user.first_name +' '+ 
+                text: user.first_name +' , '+ 
                     'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                     'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                    'If you did not request this, please ignore this email and your password will remain unchanged.\n',
             };
             smtpTransport.sendMail(mailOptions, function (err) {
-                // req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
                 done(err, 'done');
             });
         }
@@ -124,6 +109,66 @@ exports.reset = (req, res, next) => {
     });
 };
 
+exports.resetconfirm = (req, res) =>{
+    getAuthToken = function() {
+        if(req.headers.referer){
+            var parted =req.headers.referer.split('/')
+            return parted [4]
+        }else{
+            return null 
+        }
+    }
+    var token = getAuthToken(req.headers.referer)
+
+    // pulls the token from the req.headers.referer. Split it at / and return the part [4] which is the token
+   
+    async.waterfall([
+        function(done) {
+          User.findOne({ resetPasswordToken: token},(err, user)=> {
+            if (err) throw err
+            if (!user) {
+                res.status(501).send({ success: false, msg: 'Password reset token is invalid or has expired.' })
+            }
+            console.log(user)
+            user.password = bcrypt.hashSync(req.body.password, 10)
+            console.log("req.body.password:",req.body.password)
+            console.log("Encrypted user passsword:",user.password)
+            // user.password = req.body.password;
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpires = undefined;
+            user.save(err=>{
+                if(err) throw err
+                done(err, user)
+            })
+          }).then(user=>{
+              res.json(user)
+          });
+        },
+        function(user, done) {
+          var smtpTransport = nodemailer.createTransport({
+            service: 'SendGrid',
+            auth: {
+              user: process.env.USER_NAME,
+              pass: process.env.CREDENTIALS
+            }
+          });
+          var mailOptions = {
+            to: user.email,
+            from: 'passwordreset@nyjahwood',
+            subject: 'Your password has been changed',
+            text: 'Hello,\n\n' +  
+              'This is a confirmation that the password for your account ' + user.email + ' has just been changed at nyjahwood.com. Please contact our support staff if is any issue. Thank you. \n'
+          };
+          smtpTransport.sendMail(mailOptions,(err)=>{
+            // req.flash('success', 'Success! Your password has been changed.');
+            done(err);
+          });
+        }
+      ], function(err) {
+         if(err) throw err
+      });
+}
+
 exports.reset_password = (req, res) => {
     console.log(req.params)
     User.findOne({
@@ -131,7 +176,7 @@ exports.reset_password = (req, res) => {
         // resetPasswordExpires: { $gt: Date.now()}
     }, (err, user) => {
         if (err) throw err
-        if (!user || user.resetPasswordExpires == false) {
+        if (!user || user.resetPasswordExpires < Date.now()) {
             res.status(401).send({ success: false, msg: 'Password reset token is invalid or has expired please try again' })
         }
     }).then(user => {
@@ -199,4 +244,5 @@ getToken = function (headers) {
         return null;
     }
 };
+
 

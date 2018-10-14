@@ -13,6 +13,7 @@ import { of } from 'rxjs/observable/of';
 })
 export class ResetComponent implements OnInit {
 token: any
+updatedUser: any
 user ={
   password: '',
   cpassword: ''
@@ -35,10 +36,13 @@ message = ''
 
   resetpw(){
     this._http.post(`/reset/${this.token}`, this.user).subscribe(res=>{
-      console.log(res)
-
+      this.updatedUser = res
+      console.log(this.updatedUser)
+      this._router.navigateByUrl('/login')
     })
-  }
+    // ,err =>{
+    //   this.message = err.error.msg;} 
+}
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

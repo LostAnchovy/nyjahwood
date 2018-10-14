@@ -15,6 +15,7 @@ router.get('/api/users/all', User.findAll);
 router.delete('/api/user/:userId', User.delete);
 router.post('/signin', User.signin)
 router.get ('/user/:token', User.reset_password)
+router.post ('/reset/:token', User.resetconfirm)
 router.post('/resetpassword', User.reset)
 router.put('/api/user/:userId', User.update)
 
