@@ -4,9 +4,9 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/database');
 var passport = require('passport');
 var decoded = require('jwt-decode');
-var crypto  = require ('crypto');
+var crypto = require('crypto');
 var async = require('async');
-var nodemailer = require ('nodemailer')
+var nodemailer = require('nodemailer')
 
 require('../config/passport')(passport)
 
@@ -18,10 +18,10 @@ exports.create = (req, res) => {
         user_name: req.body.username,
         password: bcrypt.hashSync(req.body.password, 10)
     }).then((user) => {
-        var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
+        var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: '1d' });
         res.json({ success: true, token: token, user: user })
     }).catch(err => {
-        res.status(501).send({ success: false, msg: 'Please try another Email or Username'})
+        res.status(501).send({ success: false, msg: 'Please try another Email or Username' })
     })
 }
 // creates User into DB
@@ -71,71 +71,71 @@ exports.count = (req, res) => {
 //     })
 // }
 
-exports.reset = (req, res, next) =>{
+exports.reset = (req, res, next) => {
     async.waterfall([
-        (done)=> {
-          crypto.randomBytes(20, function(err, buf) {
-            var token = buf.toString('hex');
-            console.log(token)
-            done(err, token);
-          });
-        },
-        (token, done)=> {
-          User.findOne({ email: req.body.email },(err, user)=>{
-            if (err) throw err 
-            if (!user) {
-                res.status(501).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
-            } 
-          }).then((user)=>{
-            user.resetPasswordToken = token;
-            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-            user.save((err)=> {
-              done(err, token, user);
-            res.json(user)
+        (done) => {
+            crypto.randomBytes(20, function (err, buf) {
+                var token = buf.toString('hex');
+                console.log(token)
+                done(err, token);
             });
-          })
         },
-        // script working down here
-        function(token, user, done) {
-          var smtpTransport = nodemailer.createTransport({
-            service: 'SendGrid',
-            auth: {
-              user: 'khoacn',
-              pass: 'Noodleboy_79'
-            }
-          });
+        (token, done) => {
+            User.findOne({ email: req.body.email }, (err, user) => {
+                if (err) throw err
+                if (!user) {
+                    res.status(501).send({ success: false, msg: 'Email not found. Please enter a valid email.' })
+                }
+            }).then((user) => {
+                user.resetPasswordToken = token;
+                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.save((err) => {
+                    done(err, token, user);
+                    res.json(user)
+                });
+            })
+        },
+        function (token, user, done) {
+            var smtpTransport = nodemailer.createTransport({
+                service: 'SendGrid',
+                auth: {
+                    user: process.env.USER_NAME,
+                    pass: process.env.CREDENTIALS
+                }
+            });
 
-          var mailOptions = {
-            to: user.email,
-            from: 'passwordreset@nyjahwood.com',
-            subject: 'Nyjahwood Password Reset',
-            text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-              'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-              'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-              'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-          };
-          smtpTransport.sendMail(mailOptions, function(err) {
-            req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-            done(err, 'done');
-          });
+            var mailOptions = {
+                to: user.email,
+                from: 'passwordreset@nyjahwood.com',
+                subject: 'Nyjahwood Password Reset',
+                text: user.first_name +' '+ 
+                    'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                    'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+            };
+            smtpTransport.sendMail(mailOptions, function (err) {
+                // req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+                done(err, 'done');
+            });
         }
-      ], function(err) {
+    ], function (err) {
         if (err) return next(err);
         res.redirect('/reset-password');
-      });
-    };   
+    });
+};
 
-exports.reset_password =(req, res)=>{
+exports.reset_password = (req, res) => {
     console.log(req.params)
     User.findOne({
         resetPasswordToken: req.params.token,
         // resetPasswordExpires: { $gt: Date.now()}
-    }, (err, user)=>{
-        if(err) throw err
-        if(!user || user.resetPasswordExpires==false){
-        res.status(401).send({success: false, msg:'Password reset token is invalid or has expired'})
+    }, (err, user) => {
+        if (err) throw err
+        if (!user || user.resetPasswordExpires == false) {
+            res.status(401).send({ success: false, msg: 'Password reset token is invalid or has expired please try again' })
         }
-    }).then(user=>{
+    }).then(user => {
         res.json(user)
     })
 }
@@ -159,7 +159,7 @@ exports.signin = (req, res) => {
         bcrypt.compare(req.body.password, hash, (err, result) => {
             console.log('forms password:', req.body.password)
             if (result) {
-                var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, config.secret, { expiresIn: '1d' });
+                var token = jwt.sign({ _id: user._id, firstName: user.first_name, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: '1d' });
                 res.json({ success: true, token: token, user: user })
             } else {
                 res.status(403).send({ sucess: false, msg: 'Authentication failed. Wrong password' })
@@ -182,7 +182,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     var id = req.params.userId
     User.remove({ _id: req.params.userId }).then(() => {
-        res.status(200).send({success: true, msg:`user id:${id} was successfully deleted`})
+        res.status(200).send({ success: true, msg: `user id:${id} was successfully deleted` })
     }).catch((err) => {
         res.status(401).send({ success: false, msg: 'error could not remove user from DB' })
     })

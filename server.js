@@ -6,7 +6,8 @@ var express = require('express')
    session = require('express-session')
    bodyparser = require('body-parser')
    port = process.env.PORT || 3000
-   config = require('./config/database')
+  //  config = require('./config/database')
+   require('dotenv').config()
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
@@ -18,7 +19,7 @@ app.use (express.static(path.join(__dirname,'./client/dist/')));
 //   useNewUrlParser: true
 // })
 
-mongoose.connect(config.db,{
+mongoose.connect(process.env.CONFIG_DB,{
   useNewUrlParser: true
 }).then(res=>{
   console.log('Successfully connected to DB!')

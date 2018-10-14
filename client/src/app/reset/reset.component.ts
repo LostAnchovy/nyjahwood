@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router'
 import { HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from "@angular/router";
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 
 @Component({
@@ -23,10 +25,27 @@ message = ''
    }
 
   ngOnInit() {
-    this._http.get(`/resetpassword/${this.token}`, this.token).subscribe(res=>{
+    this._http.get(`/user/${this.token}`, this.token).subscribe(res=>{
       this.token = res
       console.log(this.token)
+    }, err =>{
+      this.message = err.error.msg;
     })
+  }
+
+  resetpw(){
+    this._http.post(`/reset/${this.token}`, this.user).subscribe(res=>{
+      console.log(res)
+
+    })
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 
 }
