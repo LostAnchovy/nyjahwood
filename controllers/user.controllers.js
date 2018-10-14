@@ -1,7 +1,6 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-var config = require('../config/database');
 var passport = require('passport');
 var decoded = require('jwt-decode');
 var crypto = require('crypto');
