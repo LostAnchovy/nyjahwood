@@ -21,6 +21,38 @@
             <p class="font-bold">${{product.price}}</p>
           </div> -->
     </div>
-    <hr>
   </div>
+
+  <footer  *ngIf='(products)?.length !== 0'> 
+  <hr class="bg-light">
+  <div>
+    <h2 class="text-center">Other Collections</h2>
+  </div>
+  <div class="row p-3">
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable2.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/']">
+          <h4 class="mt-5">View This Table</h4>
+        </a>
+      </div>
+    </div>
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable4.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/collections/customtables']">
+          <h4 class="mt-5"> View custometables</h4>
+        </a>
+      </div>
+    </div>
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable2.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/collections/dining']">
+          <h4 class="mt-5">View Dinning Collections</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 </div>

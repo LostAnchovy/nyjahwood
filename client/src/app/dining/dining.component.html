@@ -1,8 +1,7 @@
 <div class="container-fluid m-3 p-3">
 
   <div *ngIf='(products)?.length === 0'>
-      <h1 class="text-center">Sorry There are no dinning tables at this time. Please check back again soon!</h1>
-
+    <h1 class="text-center">Sorry There are no dinning tables at this time. Please check back again soon!</h1>
   </div>
 
   <div class="row" *ngFor="let product of products">
@@ -20,12 +19,38 @@
       <p class="font-weight-bold">Dinning Collection Price</p>
       <p>${{product.price}}</p>
       <Button class="btn btn-danger float-md-right">Purchase</Button>
-
-      <!-- <div class="row mt-4">
-          <div class="col-6">
-            <p class="font-bold">${{product.price}}</p>
-          </div> -->
     </div>
-    <hr>
+  </div>
+  <hr class="bg-light">
+
+ 
+  <div>
+    <h2 class="text-center">Other Collections</h2>
+  </div>
+  <div class="row p-3">
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable2.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/']">
+          <h4 class="mt-5">View This Table</h4>
+        </a>
+      </div>
+    </div>
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable4.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/collections/customtables']">
+          <h4 class="mt-5"> View custometables</h4>
+        </a>
+      </div>
+    </div>
+    <div class="view overlay waves-light col-md-4 mb-2" mdbWavesEffect>
+      <img src="./assets/images/Woodtable2.jpg" class="img-fluid" alt="work desk">
+      <div class="mask rgba-white-light text-center">
+        <a [routerLink]="['/collections/stools']">
+          <h4 class="mt-5">View Stools</h4>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

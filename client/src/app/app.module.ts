@@ -38,7 +38,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { SortPipe } from './sort.pipe';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { ResetComponent } from './reset/reset.component'
+import { ResetComponent } from './reset/reset.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ResetComponent } from './reset/reset.component'
     SortPipe,
     ResetpasswordComponent,
     ResetComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

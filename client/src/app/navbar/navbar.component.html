@@ -35,13 +35,16 @@
             </li> 
         </ul>
         <ul class="nav navbar-nav navbar-right text-center" *ngIf="_auth.loggedIn()">
-            <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show">
+            <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="!_auth.admin()">
                  <a class="nav-link" [routerLink]="['profile']">Welcome {{user}}</a>
             </li>
+            <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="_auth.admin()" >
+                <a class="nav-link" [routerLink]="['/admin/dashboard']">Welcome Admin</a>
+           </li>
             <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show">
               <a class="nav-link" (click)="logOut()">Log Out</a>
          </li> 
-        </ul>    
+        </ul>
         </div>
       </nav>
 </header>

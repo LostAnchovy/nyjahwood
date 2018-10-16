@@ -25,6 +25,8 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleGuardService as RoleGuard } from './role-guard.service';
 import { ResetpasswordComponent} from './resetpassword/resetpassword.component'
 import { ResetComponent} from './reset/reset.component'
+import { ProfileComponent} from  './profile/profile.component'
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -33,6 +35,7 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent },
   { path: 'ourstory', component: OurstoryComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'reset/:token', component: ResetComponent },
   { path: 'reset-password', component: ResetpasswordComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate:[RoleGuard] },
