@@ -18,7 +18,6 @@ const productSchema = new Schema({
     category:{
         type: String,
         enum:['customtable', 'stool', 'dinningtable'],
-        default: 'customtable'
     }
 }, {timestamps: true });
 

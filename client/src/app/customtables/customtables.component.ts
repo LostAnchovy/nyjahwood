@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../data.service'
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-customtables',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomtablesComponent implements OnInit {
 
-  constructor() { }
+products: any = []
+  constructor(private _dataService: DataService, _router: Router) { }
 
   ngOnInit() {
+    this._dataService.getCustomTables();
+
+    this._dataService.customtables.subscribe(
+      (customtables) => { this.products = customtables}
+    );
+    
   }
 
 }

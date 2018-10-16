@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   users = new BehaviorSubject ([]);
   products = new BehaviorSubject([]);
+  customtables = new BehaviorSubject([]);
+  diningcollection = new BehaviorSubject([]);
+  stools = new BehaviorSubject([]);
   blogs = new BehaviorSubject ([]);
   events = new BehaviorSubject ([]);
   usersCount = new BehaviorSubject ([]);
@@ -24,6 +27,24 @@ export class DataService {
   getAllBlogs(){
     this._http.get('/api/blogs/all').subscribe((response:any)=>{
       this.blogs.next(response)
+    })
+  }
+
+  getCustomTables(){
+    this._http.get('/api/product/customtables').subscribe((response:any)=>{
+      this.customtables.next(response)
+    })
+  }
+
+  getDiningCollection(){
+    this._http.get('/api/product/diningtables').subscribe((response:any)=>{
+      this.diningcollection.next(response)
+    })
+  }
+
+  getStools(){
+    this._http.get('/api/product/stools').subscribe((response:any)=>{
+      this.stools.next(response)
     })
   }
 

@@ -23,7 +23,7 @@ export class BloglistComponent implements OnInit {
     this._dataService.blogs.subscribe(
       (blogs)=> {this.blogs = blogs;}
     );
-    //binds the blogs objects to the 
+    //binds the blogs objects to empyt this.blogs inside ts file
   }
 
 }

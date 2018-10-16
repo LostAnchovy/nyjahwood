@@ -23,6 +23,37 @@ exports.findAll = (req,res)=>{
     })
 }
 
+exports.findCustomTables = (req, res) =>{
+    Product.find({
+        category: 'customtable'
+    }).then(product=>{
+        res.json(product)
+    }).catch((err)=>{
+        res.status(501).send({ success: false, msg:'could not retrieve products'})
+    })
+}
+
+exports.findDiningTables = (req, res) =>{
+    Product.find({
+        category: 'dinningtable'
+    }).then(product=>{
+        // res.send(200).res.json(product)
+        res.json(product)
+    }).catch((err)=>{
+        res.status(501).send({ success: false, msg:'could not retrieve products'})
+    })
+}
+
+exports.findStools= (req, res) =>{
+    Product.find({
+        category: 'stool'
+    }).then(product=>{
+        res.json(product)
+    }).catch((err)=>{
+        res.status(501).send({ success: false, msg:'could not retrieve products'})
+    })
+}
+
 exports.count = (req,res)=>{
     Product.count()
     .then((products)=>{
