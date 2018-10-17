@@ -50,7 +50,7 @@ exports.findStools= (req, res) =>{
     }).then(product=>{
         res.json(product)
     }).catch((err)=>{
-        res.status(501).send({ success: false, msg:'could not retrieve products'})
+        res.status(501).send({ success: false, msg:'could not retrieve stools products'})
     })
 }
 

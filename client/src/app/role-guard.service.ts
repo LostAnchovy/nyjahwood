@@ -4,7 +4,6 @@ import {
   CanActivate,
 } from '@angular/router';
 import * as decode from 'jwt-decode';
-import jwt from 'jsonwebtoken'
 
 @Injectable()
 export class RoleGuardService implements CanActivate {
@@ -16,7 +15,7 @@ export class RoleGuardService implements CanActivate {
     if(!token){
       this._router.navigate(['login'])
     }
-    // decode the token to get its payload then check to see if the admin role is true || false
+    // DECODE THE TOKEN TO GET THE PAYLOAD OAND CHECK TO SEE IF THE ADMIN ROLE IS TRUE || FALSE
     const tokenPayload = decode(token);
     if (!token || tokenPayload.isAdmin == false) {
       this._router.navigate(['login']);

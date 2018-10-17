@@ -16,12 +16,14 @@ user:any
 constructor(private _router: Router, private _auth: AuthService) { }
 
   ngOnInit() {
+     this.user = ''
      this.user = localStorage.getItem('user')
   }
   
   logOut(){
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    localStorage.clear();
     this._router.navigate(['login']);
   }
 

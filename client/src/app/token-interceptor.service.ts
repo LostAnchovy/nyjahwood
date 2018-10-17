@@ -11,21 +11,14 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private auth:AuthService){}
-  // intercept(req, next) {
-  //   let tokenizedReq = req.clone(
-  //     {
-  //       headers: req.headers.set('Authorization', 'bearer ' + this.auth.getToken())
-  //     }
-  //   )
-  //   return next.handle(tokenizedReq)
-  // }
-
+  constructor(private _auth:AuthService){}
+  
+// GRABS THE JWT TOKEN AND SETS IT INTO THE HEADER. TOKEN IS SENT TO THE SERVER EACH TIME THERE IS A HTTP REQUEST TO THE SERVER. SERVER AUTHENTICATES THE TOKEN AND ALLOWS/NOT ALLOW USER.
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${this.auth.getToken()}`
+        Authorization: `Bearer ${this._auth.getToken()}`
       }
     });
 
