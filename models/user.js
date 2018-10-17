@@ -1,4 +1,5 @@
 var mongoose = require ('mongoose');
+var Product = require('../models/products');
 var Schema = mongoose.Schema
 const userSchema = mongoose.Schema({
     first_name:{
@@ -27,7 +28,8 @@ const userSchema = mongoose.Schema({
     },
     resetPasswordExpires:{
         type: Date
-    }
+    },
+    products: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
 },{timestamps: true });
 
 var User = mongoose.model('User', userSchema)

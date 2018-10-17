@@ -18,6 +18,8 @@ router.get ('/user/:token', User.reset_password)
 router.post ('/reset/:token', User.resetconfirm)
 router.post('/resetpassword', User.reset)
 router.put('/api/user/:userId', User.update)
+router.get('/api/user/:userId', User.findOne)
+router.get('/api/test', User.addProduct)
 
 // create routes for api for products
 router.post('/api/newproduct', Product.create);

@@ -16,7 +16,7 @@
       <p>{{product.dimensions}}</p>
       <p class="font-weight-bold">Table Price</p>
       <p>${{product.price}}</p>
-      <Button class="btn btn-danger float-md-right">Purchase</Button>
+      <Button class="btn btn-danger float-md-right" (click)="addProduct(product._id)">Purchase</Button>
      
       <!-- <div class="row mt-4">
         <div class="col-6">

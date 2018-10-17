@@ -1,5 +1,6 @@
 var mongoose = require ('mongoose');
-var Schema = mongoose.Schema
+var Schema = mongoose.Schema;
+var User = require('../models/user');
 
 const productSchema = new Schema({
     product_name:{
@@ -18,7 +19,8 @@ const productSchema = new Schema({
     category:{
         type: String,
         enum:['customtable', 'stool', 'dinningtable'],
-    }
+    },
+    user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 }, {timestamps: true });
 
 var Product = mongoose.model('Product', productSchema)

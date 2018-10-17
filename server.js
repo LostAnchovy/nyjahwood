@@ -5,7 +5,7 @@ var express = require('express')
    path = require ('path')
    session = require('express-session')
    bodyparser = require('body-parser')
-   port = process.env.PORT || 3000
+   port = process.env.PORT || 8080
   //  config = require('./config/database')
    require('dotenv').config()
 
@@ -44,4 +44,4 @@ app.all("*", (req, res) => {
     res.sendFile(path.resolve('./client/dist/index.html'));
   });
 
-app.listen(port, ()=> console.log('Listening on Port 3000!!'))
+app.listen(port, ()=> console.log('Listening on Port 8080!!'))

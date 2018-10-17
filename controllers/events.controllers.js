@@ -52,7 +52,7 @@ exports.findOne = (req,res) =>{
 }
 
 exports.update = (req, res) => {
-    var id = {_id: req.params.eventId}
+    var id = {_id: req.params.eventsId}
 	Events.findByIdAndUpdate(id,req.body,{new:true}) 
 	.then((updatedEvent) => {
 		res.json(updatedEvent)

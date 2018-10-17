@@ -10,7 +10,7 @@
                         <span class="text-white h2">Edit Event</span>
                     </div>
                     <div class="card-body">
-                    <form #form="ngForm">
+                    <form #form="ngForm" (ngSubmit)="updateEvent(event._id)">
                         <div class="form-group">
                          <label>Event Title </label>   
                         <input class="form-control" type="text" name ="title" label="Title" [(ngModel)]="event.Title" #Title="ngModel"required>
@@ -34,10 +34,10 @@
                         <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
                         <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Update</button>
                     </form>
-                    <div class="alert alert-warning alert-dismissible" *ngIf="!form.invalid">
+                    <!-- <div class="alert alert-warning alert-dismissible" *ngIf="!form.invalid">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                              Please Edit form and submit
-                          </div>
+                          </div> -->
                     </div>
                   </div>
             </div>

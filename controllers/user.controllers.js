@@ -6,6 +6,7 @@ var decoded = require('jwt-decode');
 var crypto = require('crypto');
 var async = require('async');
 var nodemailer = require('nodemailer')
+var Product = require ('../models/products')
 
 require('../config/passport')(passport)
 
@@ -24,6 +25,33 @@ exports.create = (req, res) => {
     })
 }
 // creates User into DB
+
+exports.addProduct = (req, res)=>{
+    var token = getToken(req.headers)
+    var dtoken = decoded(token)
+    console.log(dtoken._id)
+    var id = {_id: dtoken._id}
+    // User.findByIdAndUpdate(id, {$push: {products: 'hello_bob'}}, { new: true }).then(user=>{
+    //     res.json(user)
+    // })
+    var product = new Product({products:'why is this happening!??'})
+
+    User.findByIdAndUpdate({
+        _id: dtoken._id
+    },{$push: {products: product}}, {new: true}).then(user =>{
+        res.json(user)
+    })
+}
+
+exports.findOne = (req, res) =>{
+    var id = req.params.userId
+    User.findOne({
+        _id: id
+    }).populate().exec((err, user)=>{
+        if (err) throw err
+        res.json(user)
+    })
+}
 
 exports.findAll = (req, res) => {
     var token = req.body.token || req.query.token || getToken(req.headers)
