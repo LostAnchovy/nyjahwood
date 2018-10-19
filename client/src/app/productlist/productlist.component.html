@@ -11,7 +11,7 @@
         <th>Description</th>
         <th>Dimensions</th>
         <th>Price</th>
-        <th>Updated</th>
+        <!-- <th>Updated</th> -->
         <th>Admin Privelges</th>
       </tr>
       <tbody *ngFor ="let product of products | sort: '-createdAt'">
@@ -21,9 +21,9 @@
         <td>{{product.description}}</td>
         <td>{{product.dimensions}}</td>
         <td>${{product.price}}</td>
-        <td>{{product.updatedAt | date: 'MMM d y'}}</td>
+        <!-- <td>{{product.updatedAt | date: 'MMM d y'}}</td> -->
         <td>
-          <button class="btn-warning">Update</button>
+          <button class="btn-warning"[routerLink]="['/admin/dashboard/editproduct', product._id]">Update</button>
           <button class="btn-danger" (click)="removeProduct(product, product._id)">Delete</button> </td>
       </tr>
       </tbody>

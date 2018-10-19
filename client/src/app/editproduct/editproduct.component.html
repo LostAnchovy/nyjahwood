@@ -1,0 +1,49 @@
+<app-adminheader></app-adminheader>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <app-dashboardlist></app-dashboardlist>
+    </div>
+    <div class="col-md-8">
+            <div class="container container-fluid">
+                <div class="card z-depth-1">
+                    <div class="card-header bg-warning text-center">
+                        <span class="text-white h2">Add Product</span>
+                    </div>
+                    <div class="card-body">
+                    <form #form="ngForm" (ngSubmit)="updatedProduct(product._id)">
+                        <div class="form-group">
+                         <label>Product Name</label>   
+                        <input class="form-control" type="text" name ="name" label="product name" [(ngModel)]="product.product_name" #productname="ngModel"  required>
+                        <small>product name must be unique</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Category</label>
+                            <select class="form-control" type ='text' name ="category"  [(ngModel)]="product.category" >
+                              <option>customtable</option>
+                              <option>stool</option>
+                              <option>dinningtable</option>
+                            </select>
+                          </div>
+                        <label>Description</label>   
+                        <div class="form-group">
+                        <textarea class="form-control descriptionbody" type="text" name ="description" required minlength="5" label="description" [(ngModel)]="product.description" #description="ngModel" rows="7"></textarea>
+                        </div>
+                        <div *ngIf="description.errors?.minlength"><span style= "color:red">Please enter at least five characters</span></div>
+                        <label>Dimensions</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="text" name="dimensions" label="dimensions" [(ngModel)]="product.dimensions" #dimensions="ngModel" required> 
+                        <small>please add dimensions to the product</small>
+                        </div>
+                        <label>Price</label>  
+                        <div class="form-group">
+                        <input class="form-control" type="number" name="price" label="price" [(ngModel)]="product.price" #price="ngModel" required> 
+                        </div>
+                        <button class="btn btn-primary" [disabled]="!form.valid" type = "submit" value ="ok">Submit</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div> 
+
+  

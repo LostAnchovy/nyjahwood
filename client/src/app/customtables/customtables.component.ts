@@ -22,9 +22,14 @@ productId: any
     );
     
   }
-  addProduct(){
-      console.log('this is a test')
-      this._http.post('/api/user/:productId', this.productId)
+  addProduct(id){
+      var token = localStorage.getItem('token')
+      if(!token){
+        this._router.navigate[('login')]
+      }
+      console.log(id)
+      this._http.post(`/api/user/${id}`, this.productId).subscribe(res=>{
+      })
       
   }
 

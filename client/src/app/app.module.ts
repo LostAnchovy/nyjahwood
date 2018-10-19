@@ -39,7 +39,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { SortPipe } from './sort.pipe';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetComponent } from './reset/reset.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { EditproductComponent } from './editproduct/editproduct.component'
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ProfileComponent } from './profile/profile.component'
     ResetpasswordComponent,
     ResetComponent,
     ProfileComponent,
+    EditproductComponent,
   ],
   imports: [
     BrowserModule,

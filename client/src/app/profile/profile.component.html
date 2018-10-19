@@ -1,4 +1,33 @@
 <div class="container-fluid">
-  <h1 class="text-center">Current Orders</h1>
-  <p class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga quidem veritatis repellendus, quos exercitationem magni, voluptate mollitia optio iusto ad dolorem nam, recusandae corrupti? Error perferendis iste commodi illo magnam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis deserunt iure ex tempore alias cupiditate, in nobis possimus, cumque inventore, unde consectetur distinctio officiis animi voluptates quas. Dolorem, mollitia ea!</p>
+  <h1 class="text-center">{{user}} Current Shopping Cart</h1>
+  <p class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga quidem veritatis repellendus,
+    quos exercitationem magni, voluptate mollitia optio iusto ad dolorem nam, recusandae corrupti? Error perferendis
+    iste commodi illo magnam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis deserunt iure ex
+    tempore alias cupiditate, in nobis possimus, cumque inventore, unde consectetur distinctio officiis animi
+    voluptates quas. Dolorem, mollitia ea!</p>
+</div>
+<hr class="bg-light">
+<div class="m-3 p-3">
+  <div *ngIf='(products)?.length === 0'>
+    <h1 class="text-center">Nothing currently in your Shopping Cart!!</h1>
+  </div>
+  <div class="row" *ngFor="let product of boughtProducts.products">
+    <div class="col-md-4">
+      <img src="./assets/images/Woodtable2.jpg" class="mt-3 z-depth-2 img-fluid">
+    </div>
+    <div class="col-md-8">
+      <h2 class="text-center m-3 p-3 ">{{product.product_name}}</h2>
+      <p class="font-weight-bold">Table Description</p>
+      <p>{{product.description}}</p>
+      <p class="font-weight-bold">Table Dimensions</p>
+      <p>{{product.dimensions}}</p>
+      <p class="font-weight-bold">Table Price</p>
+      <p>${{product.price}}</p>
+      <Button class="btn-small btn-danger float-md-right" (click)="removeProduct(product._id)">Remove Item</Button>
+    </div> 
+  </div>
+</div>
+<hr class="bg-light">
+<div >
+<i class="fab fa-cc-paypal fa-4x float-right m-4"></i>
 </div>

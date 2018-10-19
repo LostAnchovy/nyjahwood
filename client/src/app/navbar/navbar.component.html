@@ -36,7 +36,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right text-center" *ngIf="_auth.loggedIn()">
             <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="!_auth.admin()">
-                 <a class="nav-link" [routerLink]="['profile']">Welcome {{user}}</a>
+                 <a class="nav-link" [routerLink]="['cart']"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                 <!-- Welcome {{user}} -->
             </li>
             <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="_auth.admin()" >
                 <a class="nav-link" [routerLink]="['/admin/dashboard']">Welcome Admin</a>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TouchSequence } from 'selenium-webdriver';
+
 
 @Component({
   selector: 'app-editevent',
@@ -36,16 +36,5 @@ constructor(private _http: HttpClient, private _router: Router, private route: A
         }
       );
   }
-
-  // updateEvent(id){
-  //   // this.event.updateAt = Date.now()
-  //   this._http.put('/api/events/' + id, this.event).subscribe(res=>{
-  //     console.log(res)
-  //     let id = res['_id'];
-  //     this._router.navigate[('/admin/dashboard/eventslist/' + id)]
-  //   },(err)=>{
-  //     console.log(err)
-  //   })
-  // }
 
 }

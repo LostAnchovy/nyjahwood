@@ -18,9 +18,9 @@ router.get ('/user/:token', User.reset_password)
 router.post ('/reset/:token', User.resetconfirm)
 router.post('/resetpassword', User.reset)
 router.put('/api/user/:userId', User.update)
-router.get('/api/user/:userId', User.findOne)
-router.get('/api/test', User.addProduct)
-
+router.get('/api/loggedin', User.findOne)
+router.post('/api/user/:productId', User.addProduct)
+router.post('/api/removeProduct/:productId', User.removeProduct)
 // create routes for api for products
 router.post('/api/newproduct', Product.create);
 router.get('/api/product/customtables', Product.findCustomTables)

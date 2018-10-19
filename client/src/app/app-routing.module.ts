@@ -21,6 +21,7 @@ import {EventslistComponent} from './eventslist/eventslist.component'
 import {EventsComponent} from './events/events.component'
 import {NeweventComponent} from './newevent/newevent.component'
 import {EditeventComponent} from './editevent/editevent.component'
+import {EditproductComponent} from './editproduct/editproduct.component'
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleGuardService as RoleGuard } from './role-guard.service';
 import { ResetpasswordComponent} from './resetpassword/resetpassword.component'
@@ -35,7 +36,7 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent },
   { path: 'ourstory', component: OurstoryComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'cart', component: ProfileComponent },
   { path: 'reset/:token', component: ResetComponent },
   { path: 'reset-password', component: ResetpasswordComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate:[RoleGuard] },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'admin/dashboard/newblog', component: NewblogComponent,canActivate:[RoleGuard] },
   { path: 'admin/dashboard/newevent', component: NeweventComponent,canActivate:[RoleGuard] },
   { path: 'admin/dashboard/editevent/:eventId', component: EditeventComponent, canActivate:[RoleGuard]},
+  { path: 'admin/dashboard/editproduct/:productId', component: EditproductComponent, canActivate:[RoleGuard]},
   { path: 'admin/dashboard/userslist', component: UserslistComponent, canActivate:[RoleGuard] },
   { path: 'collections/customtables', component: CustomtablesComponent },
   { path: 'collections/stools', component: StoolsComponent },
