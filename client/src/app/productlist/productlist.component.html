@@ -8,8 +8,8 @@
       <tr>
         <th>Product Name</th>
         <th>Category</th>
-        <th>Description</th>
-        <th>Dimensions</th>
+        <!-- <th>Description</th> -->
+        <!-- <th>Dimensions</th> -->
         <th>Price</th>
         <!-- <th>Updated</th> -->
         <th>Admin Privelges</th>
@@ -18,13 +18,16 @@
       <tr class="bg-white">
         <td>{{product.product_name}}</td>
         <td>{{product.category}}</td>
-        <td>{{product.description}}</td>
-        <td>{{product.dimensions}}</td>
+        <!-- <td>{{product.description}}</td> -->
+        <!-- <td>{{product.dimensions}}</td> -->
         <td>${{product.price}}</td>
         <!-- <td>{{product.updatedAt | date: 'MMM d y'}}</td> -->
         <td>
-          <button class="btn-warning"[routerLink]="['/admin/dashboard/editproduct', product._id]">Update</button>
-          <button class="btn-danger" (click)="removeProduct(product, product._id)">Delete</button> </td>
+          <!-- <button class="btn-warning"[routerLink]="['/admin/dashboard/editproduct', product._id]">Update</button>
+          <button class="btn-danger" (click)="removeProduct(product, product._id)">Delete</button>  -->
+           <a><i class="fas fa-edit mr-2"  [routerLink]="['/admin/dashboard/editproduct', product._id]">update</i></a>
+           <a><i class="fas fa-trash-alt" (click)="removeProduct(product, product._id)"> Delete</i></a>
+        </td>
       </tr>
       </tbody>
     </table>

@@ -14,7 +14,7 @@
                   <tr>
                     <th>Blog Author</th>
                     <th>Blog Title</th>
-                    <th>Description</th>
+                    <!-- <th>Description</th> -->
                     <th>Edited</th>
                     <th>Admin Privalges</th>
                   </tr>
@@ -22,11 +22,13 @@
                   <tr class="bg-white">
                     <td>{{blog.author}}</td>
                     <td>{{blog.title}}</td>
-                    <td>{{blog.body}}</td>
+                    <!-- <td>{{blog.body}}</td> -->
                     <td>{{blog.updatedAt | date:'MMM d y'}}</td>
                     <td> 
-                      <button class="btn-warning">Update</button>
-                      <button class="btn-danger" (click)="removeBlog(blog, blog._id)">Delete</button> 
+                      <!-- <button class="btn-warning">Update</button>
+                      <button class="btn-danger" (click)="removeBlog(blog, blog._id)">Delete</button>  -->
+                      <a><i class="fas fa-edit mr-2">update</i></a>
+                      <a><i class="fas fa-trash-alt" (click)="removeBlog(blog, blog._id)"> Delete</i></a>
                     </td>
                   </tr>
                   </tbody>

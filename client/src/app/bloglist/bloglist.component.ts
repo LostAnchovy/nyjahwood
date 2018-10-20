@@ -14,6 +14,7 @@ export class BloglistComponent implements OnInit {
 
   removeBlog(blog, id){
     this._dataService.removeBlog(blog, id)
+    this.ngOnInit()
   }
 
 
