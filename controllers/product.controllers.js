@@ -37,7 +37,6 @@ exports.findDiningTables = (req, res) =>{
     Product.find({
         category: 'dinningtable'
     }).then(product=>{
-        // res.send(200).res.json(product)
         res.json(product)
     }).catch((err)=>{
         res.status(501).send({ success: false, msg:'could not retrieve products'})

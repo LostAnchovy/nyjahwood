@@ -27,8 +27,8 @@ productId: any
       if(!token){
         this._router.navigate[('login')]
       }
-      console.log(id)
       this._http.post(`/api/user/${id}`, this.productId).subscribe(res=>{
+        console.log(res)
       })
       
   }

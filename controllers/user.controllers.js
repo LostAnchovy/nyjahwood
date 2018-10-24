@@ -29,7 +29,6 @@ exports.create = (req, res) => {
 exports.addProduct = (req, res)=>{
     var token = req.body.token || req.query.token || getToken(req.headers)
     var dtoken = decoded(token)
-    console.log(dtoken._id)
     var id = {_id: dtoken._id}
     User.findByIdAndUpdate(id, {$push: {products: req.params.productId}}, { new: true }).then(user=>{
         res.json(user)

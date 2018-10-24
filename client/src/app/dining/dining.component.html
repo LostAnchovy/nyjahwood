@@ -18,7 +18,7 @@
       <p>{{product.dimensions}}</p>
       <p class="font-weight-bold">Dinning Collection Price</p>
       <p>${{product.price}}</p>
-      <Button class="btn btn-warning float-md-right">Add to Cart</Button>
+      <Button class="btn btn-warning float-md-right"  (click)="addProduct(product._id)">Add to Cart</Button>
     </div>
   </div>
   <hr class="bg-light">
