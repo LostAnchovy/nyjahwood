@@ -264,6 +264,17 @@ exports.delete = (req, res) => {
     })
 }
 
+exports.itemcount = (req, res) =>{
+    var token = getToken(req.headers)
+    var dtoken = decoded(token)
+    var id = {_id: dtoken._id}
+    User.findOne(id).then(itemcount=>{
+        res.json(itemcount.products.length)
+    }).catch((err)=>{
+        res.status(401).send({ success: false, msg: 'error find count of products in cart' })
+    })
+}
+
 getToken = function (headers) {
     if (headers && headers.authorization) {
         var parted = headers.authorization.split(' ');

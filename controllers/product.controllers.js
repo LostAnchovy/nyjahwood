@@ -62,6 +62,7 @@ exports.count = (req,res)=>{
     })
 }
 
+
 exports.findOne = (req,res) =>{
     var id = {_id: req.params.productId}
     Product.findOne(id)

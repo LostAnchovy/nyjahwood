@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router'
 import {AuthService} from '../auth.service'
 import { Observable } from 'rxjs/Observable';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +11,20 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NavbarComponent implements OnInit {
 user:any 
-
-
+cartcount = {}
   
-constructor(private _router: Router, private _auth: AuthService) { }
+constructor(private _router: Router, private _auth: AuthService, private _dataService: DataService) { }
 
   ngOnInit() {
      this.user = ''
      this.user = localStorage.getItem('user')
+
+     this._dataService.itemCount()
+
+     this._dataService.itemsCount.subscribe(
+      (result)=> {this.cartcount = result;}
+    );
+     console.log(this.cartcount)
   }
   
   logOut(){

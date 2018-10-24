@@ -21,6 +21,7 @@ router.put('/api/user/:userId', User.update)
 router.get('/api/loggedin', User.findOne)
 router.post('/api/user/:productId', User.addProduct)
 router.post('/api/removeProduct/:productId', User.removeProduct)
+router.get ('/api/itemcart', User.itemcount)
 // create routes for api for products
 router.post('/api/newproduct', Product.create);
 router.get('/api/product/customtables', Product.findCustomTables)

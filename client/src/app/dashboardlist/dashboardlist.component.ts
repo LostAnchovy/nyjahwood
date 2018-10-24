@@ -13,7 +13,6 @@ blog ={}
 product ={}
   constructor(private _dataService:DataService) { }
  
-
   ngOnInit() {
     this._dataService.userCount()
 
@@ -39,9 +38,6 @@ product ={}
       (product)=> {this.product = product;}
     );
 
-
-
- 
   }
 
 }
