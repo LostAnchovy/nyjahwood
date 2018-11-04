@@ -7,7 +7,8 @@ import { DataService } from '../data.service'
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-events
+  p:number = 1
+  events: any =[]
   constructor(private _dataService:DataService) { }
 
   ngOnInit() {

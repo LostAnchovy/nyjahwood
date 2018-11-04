@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent implements OnInit {
+  p: number = 1
   products: any
   constructor(private _dataService: DataService, private _router: Router) { }
 

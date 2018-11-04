@@ -9,7 +9,8 @@ import { Router} from "@angular/router";
   styleUrls: ['./eventslist.component.css']
 })
 export class EventslistComponent implements OnInit {
-events:any ={}
+p:number = 1
+events:any = []
   constructor(private _dataService:DataService,) { }
 
   removeEvents(events, id){

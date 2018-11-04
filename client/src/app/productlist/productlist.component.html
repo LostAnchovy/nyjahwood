@@ -14,7 +14,7 @@
         <!-- <th>Updated</th> -->
         <th>Admin Privelges</th>
       </tr>
-      <tbody *ngFor ="let product of products | sort: '-createdAt'">
+      <tbody *ngFor ="let product of products | sort: '-createdAt'| paginate: { itemsPerPage: 10, currentPage: p }">
       <tr class="bg-white">
         <td>{{product.product_name}}</td>
         <td>{{product.category}}</td>
@@ -31,6 +31,7 @@
       </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
   </div>
 </div>
 <button class="btn btn-primary" [routerLink]="['addproduct']">Add Product</button>

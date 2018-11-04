@@ -1,42 +1,45 @@
 <app-adminheader></app-adminheader>
 <div class="row">
-    <div class="col-md-4 mb-3">
-      <app-dashboardlist></app-dashboardlist>
-    </div>
-    <div class="col-md-8">
-        <div class="container-fluid">
-            <div class="card">
-              <div class="card-header bg-warning"> 
-                <h2 class="white-text">Registered Users</h2>
-              </div>
-              <div class="card-body">
-                <table class="table table-striped container-fluid">
-                  <tr>
-                    
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>create_date</th>
-                    <th>Admin Privalges</th>
-                  </tr>
-                  <tbody *ngFor ="let user of users" >
-                    
-                    <td>{{user.first_name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.createdAt | date:'MMM d y'}}</td>
-                    <td> 
-                         <button class="btn-warning">view</button> 
-                         <a><i class="fas fa-trash-alt" (click)="removeUser(user, user._id)"> Delete</i></a>
-                    </td>
-                </tbody>
-                </table>
-              </div>
-              <div class="alert alert-danger alert-dismissible m-2">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <strong> Becareful deleted </strong> users information can not be retrieved.
-                </div>
-            </div>
-            </div>
+  <div class="col-md-4 mb-3">
+    <app-dashboardlist></app-dashboardlist>
+  </div>
+  <div class="col-md-8">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header bg-warning d-inline">
+           <h2 class="white-text float-left">Registered Users</h2>
+            <form class="form-inline float-right">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search">
+            <button class="btn-small btn-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped container-fluid">
+            <tr>
+
+              <th>Name</th>
+              <th>Email</th>
+              <th>create_date</th>
+              <th>Admin Privalges</th>
+            </tr>
+            <tbody *ngFor="let user of users | sort: '-createdAt'| paginate: { itemsPerPage: 10, currentPage: p }">
+
+              <td>{{user.first_name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.createdAt | date:'MMM d y'}}</td>
+              <td>
+                <button class="btn-warning">view</button>
+                <a><i class="fas fa-trash-alt" (click)="removeUser(user, user._id)"> Delete</i></a>
+              </td>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
+        </div>
+        <div class="alert alert-danger alert-dismissible m-2">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> Becareful deleted </strong> users information can not be retrieved.
+        </div>
+      </div>
     </div>
   </div>
-
-
+</div>

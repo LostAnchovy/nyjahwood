@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./customtables.component.css']
 })
 export class CustomtablesComponent implements OnInit {
-
+p: number = 1
 products: any = []
 productId: any
   constructor(private _dataService: DataService, private _router: Router, private _http: HttpClient) { }

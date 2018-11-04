@@ -41,6 +41,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ResetComponent } from './reset/reset.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditproductComponent } from './editproduct/editproduct.component'
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { EditproductComponent } from './editproduct/editproduct.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [DataService,RoleGuardService, AuthService, AuthGuardService,{provide: HTTP_INTERCEPTORS,useClass: TokenInterceptorService, multi: true
   }],

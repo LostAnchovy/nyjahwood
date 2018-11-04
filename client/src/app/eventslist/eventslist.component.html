@@ -1,43 +1,44 @@
 <app-adminheader></app-adminheader>
 <div class="row">
-    <div class="col-md-4 mb-3">
-        <app-dashboardlist></app-dashboardlist>
-    </div>
-    <div class="col-md-8">
-            <div class="container-fluid">
-            <div class="card">
-              <div class="card-header bg-warning"> 
-                <h2 class="white-text">Events List </h2>
-              </div>
-              <div class="card-body">
-                <table class="table table-striped">
-                  <tr>
-                    <th>Event Title</th>
-                    <!-- <th>Description</th> -->
-                    <!-- <th>Location</th> -->
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Admin Privelges </th>
-                  </tr>
-                  <tbody *ngFor ="let event of events | sort: 'createdAt'">
-                  <tr class="bg-white">
-                    <td>{{event.Title}}</td>
-                    <!-- <td>{{event.Description}}</td> -->
-                    <!-- <td>{{event.Location}}</td> -->
-                    <td>{{event.Date | date:'MMM d y'}}</td>
-                    <td>{{event.Time}}</td>
-                    <td> 
-                      <!-- <button class="btn-warning"[routerLink]="['/admin/dashboard/editevent', event._id]">Update</button> -->
-                      <!-- <button class="btn-danger" (click)="removeEvents(event, event._id)">Delete</button> -->
-                      <a><i class="fas fa-edit mr-2" [routerLink]="['/admin/dashboard/editevent', event._id]">update</i></a>
-                      <a><i class="fas fa-trash-alt" (click)="removeEvents(event, event._id)"> Delete</i></a>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <a href="admin/dashboard/newevent"><button class="btn btn-primary">Create a new Event</button></a>
-            <div>
-    </div>
+  <div class="col-md-4 mb-3">
+    <app-dashboardlist></app-dashboardlist>
   </div>
+  <div class="col-md-8">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h2 class="white-text">Events List </h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <tr>
+              <th>Event Title</th>
+              <!-- <th>Description</th> -->
+              <!-- <th>Location</th> -->
+              <th>Date</th>
+              <th>Time</th>
+              <th>Admin Privelges </th>
+            </tr>
+            <tbody *ngFor="let event of events | sort: 'createdAt'| paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr class="bg-white">
+                <td>{{event.Title}}</td>
+                <!-- <td>{{event.Description}}</td> -->
+                <!-- <td>{{event.Location}}</td> -->
+                <td>{{event.Date | date:'MMM d y'}}</td>
+                <td>{{event.Time}}</td>
+                <td>
+                  <!-- <button class="btn-warning"[routerLink]="['/admin/dashboard/editevent', event._id]">Update</button> -->
+                  <!-- <button class="btn-danger" (click)="removeEvents(event, event._id)">Delete</button> -->
+                  <a><i class="fas fa-edit mr-2" [routerLink]="['/admin/dashboard/editevent', event._id]">update</i></a>
+                  <a><i class="fas fa-trash-alt" (click)="removeEvents(event, event._id)"> Delete</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
+      </div>
+      <a href="admin/dashboard/newevent"><button class="btn btn-primary">Create a new Event</button></a>
+      <div>
+      </div>
+    </div>
