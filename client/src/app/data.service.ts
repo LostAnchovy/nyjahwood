@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class DataService {
   blogsCount = new BehaviorSubject ({});
   eventsCount = new BehaviorSubject ({});
   productsCount = new BehaviorSubject ({});
-  itemsCount = new BehaviorSubject({})
+  itemsCount = new BehaviorSubject ({})
 
   constructor(private _http: HttpClient) { }
 

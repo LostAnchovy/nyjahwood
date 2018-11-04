@@ -11,7 +11,7 @@ import { DataService } from '../data.service';
 })
 export class NavbarComponent implements OnInit {
 user:any 
-cartcount = {}
+cartcount: any 
   
 constructor(private _router: Router, private _auth: AuthService, private _dataService: DataService) { }
 
@@ -21,10 +21,9 @@ constructor(private _router: Router, private _auth: AuthService, private _dataSe
 
      this._dataService.itemCount()
 
-     this._dataService.itemsCount.subscribe(
-      (result)=> {this.cartcount = result;}
-    );
-     console.log(this.cartcount)
+     this._dataService.itemsCount.asObservable().subscribe(
+      (result)=> {this.cartcount = result;});
+     
   }
   
   logOut(){

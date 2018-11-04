@@ -9,6 +9,9 @@
                     <div class="card-header bg-warning text-center">
                         <span class="text-white h2">Add Product</span>
                     </div>
+                    <div class="alert alert-danger m-2 text-center" *ngIf="message !== ''">
+                        <span>{{message}}</span>
+                      </div>
                     <div class="card-body">
                     <form #form="ngForm" (submit)="newProduct()">
                         <div class="form-group">

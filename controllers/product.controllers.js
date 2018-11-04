@@ -10,7 +10,7 @@ exports.create =(req,res)=>{
     }).then((newProduct)=>{
         res.json(newProduct)
     }).catch(err=>{
-        res.status(501).send({ success: false, msg: 'Product not entered into DB' })
+        res.status(501).send({ success: false, msg: 'Product not entered into DB. Please enter a unique product name' })
     })
 }
 
